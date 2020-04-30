@@ -18,6 +18,9 @@ import { GChartHistogramaComponent } from './components/g-chart-histograma/g-cha
 import { GoogleChartsModule } from 'angular-google-charts';
 import { CardComponent } from './components/card/card.component';
 import { CardsDataService} from './services/cards-data.service';
+import { UserInfoComponent } from './components/user-info/user-info.component';
+import { TopBarComponent } from './components/top-bar/top-bar.component';
+import { TitleLogoComponent } from './components/title-logo/title-logo.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,10 @@ import { CardsDataService} from './services/cards-data.service';
     NaranjaComponent,
     GoogleChartComponent,
     GChartHistogramaComponent,
-    CardComponent
+    CardComponent,
+    UserInfoComponent,
+    TopBarComponent,
+    TitleLogoComponent
   ],
   imports: [
     BrowserModule,
