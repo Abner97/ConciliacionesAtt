@@ -15,9 +15,10 @@ export class GChartHistogramaComponent implements OnInit {
     this.data = this._histData.getData();
   }
   handler(evento){
-    if(evento){
+    
+    if(evento.length>0){
       console.log(evento[0].row)
-      alert('Se selecciono la columna: '+  evento[0].row);
+      window.location.href='/histograma-detalles/'+evento[0].row;
     }
   }
 }

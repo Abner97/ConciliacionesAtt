@@ -34,7 +34,7 @@ export class HistDataService {
       ['Abril 11,2018', 1100000],
       ['Abril 12,2018', 1200000],
     ],
-    columnNames : ['Fecha', 'Percentage'],
+    columnNames : ['Fecha', 'Totales'],
     options : { 
       colors:['green','red'],
     },

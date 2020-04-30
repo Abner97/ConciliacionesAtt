@@ -1,4 +1,4 @@
-<div class="card animated fadeIn fast">
+<div *ngIf="data; else elseBlock" class="card animated fadeIn fast">
     <div class="card-header">
  {{title}}
     </div>
@@ -20,3 +20,4 @@
         <!-- <a [routerLink]="['/heroe',i]" class="btn btn-outline-primary">Ver más link...</a> -->
     </div>
 </div>
+<ng-template #elseBlock>No hay cartas</ng-template>

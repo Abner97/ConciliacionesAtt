@@ -21,6 +21,7 @@ import { CardsDataService} from './services/cards-data.service';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { TitleLogoComponent } from './components/title-logo/title-logo.component';
+import { HistogramaDetalleComponent } from './components/histograma-detalle/histograma-detalle.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { TitleLogoComponent } from './components/title-logo/title-logo.component
     CardComponent,
     UserInfoComponent,
     TopBarComponent,
-    TitleLogoComponent
+    TitleLogoComponent,
+    HistogramaDetalleComponent
   ],
   imports: [
     BrowserModule,
