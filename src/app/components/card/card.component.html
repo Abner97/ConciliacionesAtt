@@ -20,4 +20,8 @@
         <!-- <a [routerLink]="['/heroe',i]" class="btn btn-outline-primary">Ver más link...</a> -->
     </div>
 </div>
-<ng-template #elseBlock>No hay cartas</ng-template>
+<ng-template #elseBlock>No hay cartas<div class="text-center">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div></ng-template>
