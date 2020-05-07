@@ -1,8 +1,9 @@
 <div *ngIf="data; else elseBlock" class="card animated fadeIn fast">
     <div class="card-header">
- {{title}}
+        {{title}}
     </div>
-    <app-google-chart [title]="title" [type]="type" [data]="data" [columnNames]="columnNames" [options]="options" [width]="width" [height]="height"></app-google-chart>
+    <app-google-chart [title]="title" [type]="type" [data]="data" [columnNames]="columnNames" [options]="options"
+        [width]="width" [height]="height"></app-google-chart>
     <p class="porcentaje">{{data[1].slice(1)}} %</p>
     <!--
         <p>{{type}}</p>
@@ -11,17 +12,18 @@
         <!--
         <h5 class="card-title p">Conci</h5>
         <p class="card-text p">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem fuga totam quis soluta iusto consequuntur praesentium ad doloremque debitis. Voluptates ratione distinctio doloremque repellendus id similique repudiandae vel harum fugit!</p>
-    -->    
+    -->
         <!-- <p class="card-text p"><small class="text-muted">{{heroe.aparicion}}</small></p> -->
 
         <button type="button" class="btn btn-primary btn-lg btn-block">
-              Ir a detalle
-           </button>
+            Ir a detalle
+        </button>
         <!-- <a [routerLink]="['/heroe',i]" class="btn btn-outline-primary">Ver más link...</a> -->
     </div>
 </div>
 <ng-template #elseBlock>No hay cartas<div class="text-center">
-    <div class="spinner-border" role="status">
-      <span class="sr-only">Loading...</span>
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
     </div>
-  </div></ng-template>
+</ng-template>

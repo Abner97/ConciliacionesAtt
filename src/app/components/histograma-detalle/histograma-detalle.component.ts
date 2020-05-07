@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HistDataService, charData} from '../../services/hist-data.service';
+import { HistDataService, charData } from '../../services/hist-data.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -9,9 +9,9 @@ import { ActivatedRoute } from '@angular/router';
 })
 
 export class HistogramaDetalleComponent implements OnInit {
-  row:string;
+  row: string;
   data: charData[] = [];
-  constructor(private _histData: HistDataService,private actRoute: ActivatedRoute) { }
+  constructor(private _histData: HistDataService, private actRoute: ActivatedRoute) { }
   ngOnInit(): void {
     this.data = this._histData.getData();
     console.log(this.row);
@@ -20,7 +20,7 @@ export class HistogramaDetalleComponent implements OnInit {
     });
     console.log(this.row)
   }
-  volver(){
-    window.location.href='/histograma';
+  volver() {
+    window.location.href = '/histograma';
   }
 }

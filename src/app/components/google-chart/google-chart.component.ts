@@ -22,12 +22,14 @@ export class GoogleChartComponent implements OnInit {
   constructor() { 
     
   }
+
   handler(evento){
     if(evento){
       console.log(evento[0].row)
       alert('do something');
     }
   }
+  
   ngOnInit(): void {
   }
   
