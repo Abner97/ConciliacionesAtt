@@ -22,6 +22,7 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { TitleLogoComponent } from './components/title-logo/title-logo.component';
 import { HistogramaDetalleComponent } from './components/histograma-detalle/histograma-detalle.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { HistogramaDetalleComponent } from './components/histograma-detalle/hist
     UserInfoComponent,
     TopBarComponent,
     TitleLogoComponent,
-    HistogramaDetalleComponent
+    HistogramaDetalleComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
