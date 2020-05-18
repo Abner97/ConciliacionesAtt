@@ -13,6 +13,7 @@
         </div>
     </div>  
 </div> -->
-<app-top-bar></app-top-bar>
-<app-navbar></app-navbar>
+
+<app-top-bar *ngIf="sesion"></app-top-bar>
+<app-navbar *ngIf="sesion"></app-navbar>
 <router-outlet></router-outlet>

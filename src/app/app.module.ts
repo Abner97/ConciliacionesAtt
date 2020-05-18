@@ -1,11 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 // Rutas
 import {APP_ROUTING} from './app.routes';
 
 // Servicios
 
+// Gaurds
 // Componentes
+
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
@@ -23,6 +26,9 @@ import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { TitleLogoComponent } from './components/title-logo/title-logo.component';
 import { HistogramaDetalleComponent } from './components/histograma-detalle/histograma-detalle.component';
 import { LoginComponent } from './components/login/login.component';
+import { CanActivateGuard } from './guards/can-activate.guard';
+import { AuthService } from './services/auth.service';
+import { OnlyLoggedGuard } from './guards/only-logged.guard';
 
 @NgModule({
   declarations: [
@@ -44,11 +50,15 @@ import { LoginComponent } from './components/login/login.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     APP_ROUTING,
     GoogleChartsModule
   ],
   providers: [
-  CardsDataService
+  CardsDataService,
+  CanActivateGuard,
+  AuthService,
+  OnlyLoggedGuard
   ],
   bootstrap: [AppComponent]
 })

@@ -12,4 +12,8 @@ export class UserInfoComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  handleCerrarSesion($event){
+    alert("Cerrando sesion");
+    localStorage.setItem('SesionAtt','false');
+  }
 }
