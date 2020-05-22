@@ -23,7 +23,7 @@ export class AuthService {
   constructor(private http: HttpClient,private router: Router) { }
   //Login
   login(user: string, password: string) {
-    this.http.post(this.uri + '/autenticar', {user: "sudonym",password:"att12345678?"}, this.options)
+    this.http.post('/autenticar', {user: "sudonym",password:"att12345678?"})
     .subscribe((resp: any) => {
      
       this.router.navigate(['home']);
