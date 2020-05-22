@@ -8,10 +8,14 @@ import {AuthService} from './services/auth.service';
 })
 export class AppComponent implements OnInit{
   constructor(private _auth: AuthService){}
-
+  user="sudonym";
+  password="att12345678?";
     ngOnInit(): void {
-      this.sesion=this._auth.isLoggedIn()
+      console.log("Aquiandamos");
+      this._auth.login(this.user,this.password);
+      this.sesion=this._auth.logIn();
     }
+    
   title = 'spa';
   sesion: boolean;
 }
