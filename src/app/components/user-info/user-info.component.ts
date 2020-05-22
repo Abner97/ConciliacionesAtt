@@ -14,6 +14,6 @@ export class UserInfoComponent implements OnInit {
 
   handleCerrarSesion($event){
     alert("Cerrando sesion");
-    localStorage.setItem('SesionAtt','false');
+    localStorage.removeItem('auth_token');
   }
 }

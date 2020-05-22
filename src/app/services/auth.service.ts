@@ -33,11 +33,11 @@ export class AuthService {
        
     }
     logout() {
-      localStorage.removeItem('token');
+      localStorage.removeItem('auth_token');
     }
    //Estamos IN?
     logIn(){
-      return (localStorage.getItem('token') !== null);
+      return (localStorage.getItem('auth_token') !== null);
     }
     isLoggedIn(){
       return true;
