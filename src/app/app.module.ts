@@ -33,6 +33,7 @@ import { GoogleChartComponent } from './components/google-chart/google-chart.com
 import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { LoginComponent } from './components/login/login.component';
+import { NewUserFormComponent } from './components/new-user-form/new-user-form.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { LoginComponent } from './components/login/login.component';
     TitleLogoComponent,
     HistogramaDetalleComponent,
     LoginComponent,
-    InOutChartComponent
+    InOutChartComponent,
+    NewUserFormComponent
   ],
   imports: [
     BrowserModule,
