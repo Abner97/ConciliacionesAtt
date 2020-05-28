@@ -21,4 +21,6 @@ export class InOutChartComponent implements OnInit {
       window.location.href='/histograma-detallesp/'+evento[0].row;
     }
   }
+
+  on
 }
