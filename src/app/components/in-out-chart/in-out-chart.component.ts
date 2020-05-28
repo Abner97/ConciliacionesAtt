@@ -9,6 +9,7 @@ import {  FormGroup, FormControl } from '@angular/forms';
 export class InOutChartComponent implements OnInit {
 
   data: charData[] = [];
+  update:boolean=false;
   constructor(private _inOutData: InOutDataService) { }
   profileForm = new FormGroup({
     date :new FormControl(''),
@@ -26,12 +27,17 @@ export class InOutChartComponent implements OnInit {
   }
 
   onSubmit(){
+  this.update=false;
    let fechaConsulta=new Date(this.profileForm.value.date);
    let today= new Date();
   
    let resta = today.getTime() - fechaConsulta.getTime();
    let offset= Math.round(resta/ (1000*60*60*24));
-
-   this._inOutData.getPosts(offset);
+   
+   (async () => {
+    this.update= await this._inOutData.getPosts(offset);
+   
+    })()
+    
   }
 }

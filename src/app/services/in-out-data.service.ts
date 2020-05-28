@@ -35,7 +35,7 @@ export class InOutDataService {
   uri = "apiattsmc.eastus.cloudapp.azure.com:3000";
   token;
   response:any[]=[];
-  datos:any[]=[['Abril 1,2018', 100000, 30000]];
+  datos:any[]=[];
   headers = new HttpHeaders({
     'Content-Type': 'application/json',
     'access-token': localStorage.auth_token
@@ -81,40 +81,39 @@ export class InOutDataService {
   }
 
   getData1(response:any[]) {
+    //this.datos=[[]]; Porque rayos no me deja limpiar el array WTF!
     response.forEach(element => {
-      console.log(element);
-      this.datos.push([element.fechaProceso,element.portOut,element.portIn]);
+      console.log(element.FECHA_PROCESO);
+      this.datos.push([element.FECHA_PROCESO,element.PORT_OUT,element.PORT_IN]);
     });
     console.log(this.datos);
   }
 
   getPosts(offset:number) {//posible solución , corregir post, hacer trim del response
   
-    const promise = new Promise((resolve, reject) => {
+    const promise = new Promise<boolean>((resolve, reject) => {
       this.http
-        .get<Post[]>(`/portabilidad_gral/${offset}`,{headers:this.headers})
+        .get(`/portabilidad_gral/${offset}`,{headers:this.headers})
         .toPromise()
         .then((res: any[]) => {
           // Success
-    
-          this.response = res.map((res: any) => {
-            return new Post(
-              res.FECHAPROCESO,
-              res.PORTOUT,
-              res.PORTIN,
-              
-            );
-          });
-          resolve();
+          res;
+          console.log(res);
+          this.getData1(res);
+          
+          resolve(true);
+          
         },
           err => {
             // Error
-            reject(err);
+            reject(false);
+          
           }
         );
     });
-    console.log(this.response);
-    this.getData1(this.response);
+
+    return promise;
+   
     
   }
 
