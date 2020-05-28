@@ -26,7 +26,7 @@ export class AuthService {
     this.http.post('/autenticar', {user: "sudonym",password:"att12345678?"})
     .subscribe((resp: any) => {
      
-      this.router.navigate(['home']);
+      //this.router.navigate(['home']);
       localStorage.setItem('auth_token', resp.token);
       })
       

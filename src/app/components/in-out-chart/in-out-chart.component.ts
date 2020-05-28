@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { InOutDataService, charData} from '../../services/in-out-data.service';
-
+import {  FormGroup, FormControl } from '@angular/forms';
 @Component({
   selector: 'app-in-out-chart',
   templateUrl: './in-out-chart.component.html',
@@ -9,10 +9,13 @@ import { InOutDataService, charData} from '../../services/in-out-data.service';
 export class InOutChartComponent implements OnInit {
 
   data: charData[] = [];
-  constructor(private _histData: InOutDataService) { }
-
+  constructor(private _inOutData: InOutDataService) { }
+  profileForm = new FormGroup({
+    date :new FormControl(''),
+    
+  });
   ngOnInit(): void {
-    this.data = this._histData.getData();
+    this.data = this._inOutData.getData();
   }
   handler(evento){
     
@@ -22,5 +25,13 @@ export class InOutChartComponent implements OnInit {
     }
   }
 
-  on
+  onSubmit(){
+   let fechaConsulta=new Date(this.profileForm.value.date);
+   let today= new Date();
+  
+   let resta = today.getTime() - fechaConsulta.getTime();
+   let offset= Math.round(resta/ (1000*60*60*24));
+
+   this._inOutData.getPosts(offset);
+  }
 }

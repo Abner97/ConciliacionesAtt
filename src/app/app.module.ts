@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { GoogleChartsModule } from 'angular-google-charts';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // Rutas
 import {APP_ROUTING} from './app.routes';
@@ -59,13 +60,15 @@ import { NewUserFormComponent } from './components/new-user-form/new-user-form.c
     BrowserModule,
     HttpClientModule,
     APP_ROUTING,
-    GoogleChartsModule
+    GoogleChartsModule,
+    ReactiveFormsModule
   ],
   providers: [
   CardsDataService,
   CanActivateGuard,
   AuthService,
-  OnlyLoggedGuard
+  OnlyLoggedGuard,
+  InOutDataService
   ],
   bootstrap: [AppComponent]
 })

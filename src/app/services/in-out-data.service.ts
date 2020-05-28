@@ -1,7 +1,6 @@
-import { Injectable } from '@angular/core';
-import { NONE_TYPE } from '@angular/compiler';
-import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http';
-import { element } from 'protractor';
+import { Injectable, Inject } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 
 export interface charData {
   title: string;
@@ -13,18 +12,22 @@ export interface charData {
   height: number;
 }
 
-@Injectable({
-  providedIn: 'root'
-})
 
 class Post {
-  constructor(
+  constructor(@Inject(String)
     public fechaProceso: string,
+    @Inject(Number)
     public portOut:number,
+    @Inject(Number)
     public portIn: number,
     
   ) { }
 }
+
+@Injectable({
+  providedIn: 'root'
+})
+
 export class InOutDataService {
 
   constructor(private http: HttpClient) { }
@@ -32,11 +35,13 @@ export class InOutDataService {
   uri = "apiattsmc.eastus.cloudapp.azure.com:3000";
   token;
   response:any[]=[];
-  datos:any[]=[];
+  datos:any[]=[['Abril 1,2018', 100000, 30000]];
   headers = new HttpHeaders({
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    'access-token': localStorage.auth_token
   });
-  options = { headers: this.headers };
+
+  // options:HttpHeader = { headers: this.headers };
 
   
   private data: charData[] = [{
@@ -71,21 +76,27 @@ export class InOutDataService {
   //   this.response=this.http.post('/portabilidad_gral', {sysdate:offset});
 
   // }
+  getData(){
+    return this.data;
+  }
 
-  getData(response:any[]) {
+  getData1(response:any[]) {
     response.forEach(element => {
+      console.log(element);
       this.datos.push([element.fechaProceso,element.portOut,element.portIn]);
     });
+    console.log(this.datos);
   }
 
   getPosts(offset:number) {//posible solución , corregir post, hacer trim del response
   
     const promise = new Promise((resolve, reject) => {
       this.http
-        .get<Post[]>('/portabilidad_gral',{sysdate:offset})
+        .get<Post[]>(`/portabilidad_gral/${offset}`,{headers:this.headers})
         .toPromise()
-        .then((res: any) => {
+        .then((res: any[]) => {
           // Success
+    
           this.response = res.map((res: any) => {
             return new Post(
               res.FECHAPROCESO,
@@ -102,8 +113,8 @@ export class InOutDataService {
           }
         );
     });
-
-    this.getData(this.response);
+    console.log(this.response);
+    this.getData1(this.response);
     
   }
 

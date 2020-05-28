@@ -1,6 +1,11 @@
 {
   "/autenticar": {
-    "target": "http://apiattsmc.eastus.cloudapp.azure.com:3000",
+    "target": "http://localhost:3000",
+    "secure": false
+  },
+  "/portabilidad_gral":{
+    "target": "http://localhost:3000",
     "secure": false
   }
 }
+
