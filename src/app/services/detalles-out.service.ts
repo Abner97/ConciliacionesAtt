@@ -16,7 +16,7 @@ export interface charData {
   providedIn: 'root'
 })
 
-export class InOutDataService {
+export class DetallesOutService {
 
   constructor(private http: HttpClient) { }
 
@@ -34,7 +34,7 @@ export class InOutDataService {
   
   private data: charData[] = [{
     title: 'Bill Cycle Acumlado por dia 2018',
-    type: 'Line',
+    type: 'ColumnChart',
     // data: [
     //   ['Abril 1,2018', 100000, 30000],
     //   ['Abril 2,2018', 200000, 20000],
@@ -50,9 +50,11 @@ export class InOutDataService {
     //   ['Abril 12,2018', 120000, 50000],
     // ],
     data: this.datos,
-    columnNames: ['Fecha', 'In', 'Out'],
+    columnNames: ['Fecha', 'Activaciones', 'CambioDN','Otros','Portin'],
     options: {
-      colors: ['green', 'red', 'blue'],
+      colors: ['#62A0D7','#EE8636','#AAAAAA', '#FFC400'],
+      isStacked: true,
+      bar: { groupWidth: '35%' },
     },
     width: 1400,
     height: 500
@@ -71,10 +73,11 @@ export class InOutDataService {
   getData1(response:any[]) {
     //this.datos=[[]]; Porque rayos no me deja limpiar el array WTF!
     this.datos.splice(0, this.datos.length);
+    console.log(this.response);
     response.forEach(element => {
       console.log(element.FECHA_PROCESO);
       let slicedDate=element.FECHA_PROCESO.slice(0,element.FECHA_PROCESO.search("T"));
-      this.datos.push([slicedDate,element.PORT_OUT,element.PORT_IN]);
+      this.datos.push([slicedDate,element.ACTIVACIONES,element.CAMBIO_DN,element.OTROS,element.PORTIN]);
     });
     this.datos=this.datos.reverse();
     console.log(this.datos);
@@ -84,7 +87,7 @@ export class InOutDataService {
   
     const promise = new Promise<boolean>((resolve, reject) => {
       this.http
-        .get(`/portabilidad_gral/${offset}`,{headers:this.headers})
+        .get(`/portabilidad_lineal_origen_out/${offset}`,{headers:this.headers})
         .toPromise()
         .then((res: any[]) => {
           // Success

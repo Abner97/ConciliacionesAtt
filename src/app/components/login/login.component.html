@@ -1,22 +1,27 @@
 <head>
-   </head>
-       <div class="container">
-           <div >
-           <p>
-               Sistema de Conciliaciones
-           </p>
-           <img src="assets/img/att.png">
-           </div>
-           <div class=" row form-group">
-               <label for="exampleInputEmail1">Usuario </label>
-               <input type="email" class="form-control" aria-describedby="emailHelp">
-            </div>
-           <div class="row form-group">
-               <label for="exampleInputPassword1">Password</label>
-               <input type="password" class="form-control">
-           </div>
-           <div class="row">
-               <button type="button" class="btn btn-primary">Login</button>
-           </div>
-               
-       </div>
+</head>
+    <div class="container">
+        <div >
+        <p>
+            Sistema de Conciliaciones
+        </p>
+        <img src="assets/img/att.png">
+        </div>
+        <form (ngSubmit)="onSubmit()" [formGroup]="profileForm">
+
+            <div class=" row form-group">
+                 <label for="exampleInputEmail1">Usuario
+                    <input type="text" class="form-control" aria-describedby="emailHelp" formControlName="user">
+                 </label>
+             </div>
+             <div class="row form-group">
+                 <label for="exampleInputPassword1">Password
+                     <input type="password" class="form-control" formControlName="password">
+                 </label>
+             </div>
+             <div class="row">
+                 <button type="submit" class="btn btn-primary">Login</button>
+             </div> 
+         </form>
+
+    </div>

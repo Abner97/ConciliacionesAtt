@@ -6,6 +6,10 @@
   "/portabilidad_gral":{
     "target": "http://apiattsmc.eastus.cloudapp.azure.com:3000",
     "secure": false
+  },
+  "/portabilidad_lineal_origen_out":{
+    "target": "http://apiattsmc.eastus.cloudapp.azure.com:3000",
+    "secure": false
   }
 }
 

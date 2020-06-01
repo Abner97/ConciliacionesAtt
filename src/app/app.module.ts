@@ -10,7 +10,8 @@ import {APP_ROUTING} from './app.routes';
 // Servicios
 import { AuthService } from './services/auth.service';
 import { CardsDataService} from './services/cards-data.service';
-import { InOutDataService } from './services/in-out-data.service'
+import { InOutDataService } from './services/in-out-data.service';
+import { DetallesOutService } from './services/detalles-out.service';
 
 // Gaurds
 import { CanActivateGuard } from './guards/can-activate.guard';
@@ -35,6 +36,7 @@ import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { LoginComponent } from './components/login/login.component';
 import { NewUserFormComponent } from './components/new-user-form/new-user-form.component';
+import { DetallesOutComponent } from './components/detalles-out/detalles-out.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,8 @@ import { NewUserFormComponent } from './components/new-user-form/new-user-form.c
     HistogramaDetalleComponent,
     LoginComponent,
     InOutChartComponent,
-    NewUserFormComponent
+    NewUserFormComponent,
+    DetallesOutComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +71,8 @@ import { NewUserFormComponent } from './components/new-user-form/new-user-form.c
   CanActivateGuard,
   AuthService,
   OnlyLoggedGuard,
-  InOutDataService
+  InOutDataService,
+  DetallesOutService
   ],
   bootstrap: [AppComponent]
 })

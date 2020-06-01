@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-info',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserInfoComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -15,5 +16,6 @@ export class UserInfoComponent implements OnInit {
   handleCerrarSesion($event){
     alert("Cerrando sesion");
     localStorage.removeItem('auth_token');
+    this.router.navigate(['login']);
   }
 }
