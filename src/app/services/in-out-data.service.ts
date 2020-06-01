@@ -82,10 +82,13 @@ export class InOutDataService {
 
   getData1(response:any[]) {
     //this.datos=[[]]; Porque rayos no me deja limpiar el array WTF!
+    this.datos.splice(0, this.datos.length);
     response.forEach(element => {
       console.log(element.FECHA_PROCESO);
-      this.datos.push([element.FECHA_PROCESO,element.PORT_OUT,element.PORT_IN]);
+      let slicedDate=element.FECHA_PROCESO.slice(0,element.FECHA_PROCESO.search("T"));
+      this.datos.push([slicedDate,element.PORT_OUT,element.PORT_IN]);
     });
+    this.datos=this.datos.reverse();
     console.log(this.datos);
   }
 
