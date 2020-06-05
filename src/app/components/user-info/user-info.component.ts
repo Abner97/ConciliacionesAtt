@@ -17,5 +17,6 @@ export class UserInfoComponent implements OnInit {
     alert("Cerrando sesion");
     localStorage.removeItem('auth_token');
     this.router.navigate(['login']);
+    window.location.reload();
   }
 }

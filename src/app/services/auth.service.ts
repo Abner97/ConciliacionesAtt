@@ -27,6 +27,7 @@ export class AuthService {
     .subscribe((resp: any) => {
      
       localStorage.setItem('auth_token', resp.token);
+      window.location.reload();
       this.router.navigate(['home']);
       })
       
@@ -34,7 +35,7 @@ export class AuthService {
     }
     logout() {
       localStorage.removeItem('auth_token');
-      this.router.navigate(['login'])
+      this.router.navigate(['login']);
     }
    //Estamos IN?
     logIn(){

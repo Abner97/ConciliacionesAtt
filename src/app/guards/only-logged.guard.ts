@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router} from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
@@ -7,7 +7,7 @@ import { AuthService } from '../services/auth.service';
   providedIn: 'root'
 })
 export class OnlyLoggedGuard implements CanActivate {
-  constructor(private authService:AuthService){
+  constructor(private authService:AuthService,private router: Router){
 
   }
   canActivate(
@@ -17,7 +17,8 @@ export class OnlyLoggedGuard implements CanActivate {
       return true;
 
     }else{
-      window.alert("Usted no esta loggeado, por ende no tiene permiso para ver esta pagina")
+      window.alert("Usted no esta loggeado, por ende no tiene permiso para ver esta pagina");
+      this.router.navigate(['login']);
       return false;
     }
 
