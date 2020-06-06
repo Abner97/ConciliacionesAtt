@@ -23,7 +23,7 @@ export class AuthService {
   constructor(private http: HttpClient,private router: Router) { }
   //Login
   login(user: string, password: string) {
-    this.http.post('/autenticar', {user: "sudonym",password:"att12345678?"})
+    this.http.post('/autenticar', {user: user,password:password})
     .subscribe((resp: any) => {
      
       localStorage.setItem('auth_token', resp.token);

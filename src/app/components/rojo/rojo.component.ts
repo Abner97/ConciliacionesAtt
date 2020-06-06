@@ -2,16 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {CardsDataService, charData} from '../../services/cards-data.service';
 
 
-
-
-
-
 @Component({
   selector: 'app-rojo',
   templateUrl: './rojo.component.html',
 })
-
-
 
 export class RojoComponent implements OnInit {
   

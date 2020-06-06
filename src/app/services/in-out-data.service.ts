@@ -20,7 +20,7 @@ export class InOutDataService {
 
   constructor(private http: HttpClient) { }
 
-  uri = "apiattsmc.eastus.cloudapp.azure.com:3000";
+ // uri = "apiattsmc.eastus.cloudapp.azure.com:3000";
   token;
   response:any[]=[];
   datos:any[]=[];

@@ -10,6 +10,14 @@
   "/portabilidad_lineal_origen_out":{
     "target": "http://apiattsmc.eastus.cloudapp.azure.com:3000",
     "secure": false
+  },
+  "/portabilidad_operador_in":{
+    "target": "http://apiattsmc.eastus.cloudapp.azure.com:3000",
+    "secure": false
+  },
+  "/portabilidad_operador_out":{
+    "target": "http://apiattsmc.eastus.cloudapp.azure.com:3000",
+    "secure": false
   }
 }
 
