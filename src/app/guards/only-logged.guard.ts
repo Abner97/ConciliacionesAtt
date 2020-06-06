@@ -17,7 +17,7 @@ export class OnlyLoggedGuard implements CanActivate {
       return true;
 
     }else{
-      window.alert("Usted no esta loggeado, por ende no tiene permiso para ver esta pagina");
+      //window.alert("Usted no esta loggeado, por ende no tiene permiso para ver esta pagina");
       this.router.navigate(['login']);
       return false;
     }
