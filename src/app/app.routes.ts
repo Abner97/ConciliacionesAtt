@@ -11,6 +11,7 @@ import { DetallesOutComponent} from './components/detalles-out/detalles-out.comp
 import { LoginComponent } from './components/login/login.component';
 import { CanActivateGuard } from './guards/can-activate.guard';
 import { OnlyLoggedGuard } from './guards/only-logged.guard';
+import { IsLoggedInGuard } from './guards/is-logged-in.guard';
 
 const APP_ROUTES: Routes = [
 {path: 'home', component: HomeComponent, canActivate:[CanActivateGuard, OnlyLoggedGuard]},
@@ -22,7 +23,7 @@ const APP_ROUTES: Routes = [
 {path: 'inout', component: InOutChartComponent , canActivate:[CanActivateGuard, OnlyLoggedGuard]},
 {path: 'detalles-out', component: DetallesOutComponent , canActivate:[CanActivateGuard, OnlyLoggedGuard]},
 {path: 'histograma-detalles/:row', component:HistogramaDetalleComponent , canActivate:[CanActivateGuard, OnlyLoggedGuard]},
-{path: 'login', component:LoginComponent},
+{path: 'login', component:LoginComponent, canActivate:[IsLoggedInGuard]},
 
 
 {path: '**', pathMatch: 'full', redirectTo: 'login'}

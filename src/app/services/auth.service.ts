@@ -23,17 +23,32 @@ export class AuthService {
   constructor(private http: HttpClient,private router: Router) { }
   //Login
   login(user: string, password: string) {
-    this.http.post('/autenticar', {user: user,password:password})
-    .subscribe((resp: any) => {
-     
-      localStorage.setItem('auth_token', resp.token);
+    /*{//prueba
+      localStorage.setItem('auth_token', 'prueba no backend');
       window.location.reload();
       this.router.navigate(['home']);
-      })
+    }*/
+    this.http.post('/autenticar', {user: user ,password: password})
+    .subscribe((resp: any) => {
+      console.log(resp)
+      if (resp.mensaje =="Usuario o contraseña incorrectos" ) {
+        // si la api regresa el mensaje "Usuario o contraseña incorrectos"
+        console.log("Error de authenticacion");
+        alert("Usuario o contraseña incorrectos");
+        window.location.reload();
+    }else if(resp.mensaje =="Autenticación correcta"){
+      // si la api regresa el mensaje "Autenticación correcta"
+      console.log(resp);
+      localStorage.setItem('auth_token', resp.token);
+      this.router.navigate(['home']);
+      window.location.reload();
       
-       
     }
-    logout() {
+
+      })
+    
+    }
+  logout() {
       localStorage.removeItem('auth_token');
       this.router.navigate(['login']);
     }
