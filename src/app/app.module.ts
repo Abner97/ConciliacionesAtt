@@ -37,6 +37,9 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
 import { LoginComponent } from './components/login/login.component';
 import { NewUserFormComponent } from './components/new-user-form/new-user-form.component';
 import { DetallesOutComponent } from './components/detalles-out/detalles-out.component';
+import { PortabilidadOutComponent } from './components/portabilidad-out/portabilidad-out.component';
+import { PortabilidadOutInService } from './services/portabilidad-out-in.service';
+import { PortabilidadInComponent } from './components/portabilidad-in/portabilidad-in.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +60,9 @@ import { DetallesOutComponent } from './components/detalles-out/detalles-out.com
     LoginComponent,
     InOutChartComponent,
     NewUserFormComponent,
-    DetallesOutComponent
+    DetallesOutComponent,
+    PortabilidadOutComponent,
+    PortabilidadInComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +77,8 @@ import { DetallesOutComponent } from './components/detalles-out/detalles-out.com
   AuthService,
   OnlyLoggedGuard,
   InOutDataService,
-  DetallesOutService
+  DetallesOutService,
+  PortabilidadOutInService
   ],
   bootstrap: [AppComponent]
 })

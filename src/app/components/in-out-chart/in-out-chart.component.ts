@@ -18,6 +18,7 @@ export class InOutChartComponent implements OnInit {
   ngOnInit(): void {
     this.data = this._inOutData.getData();
   }
+  
   handler(evento){
     
     if(evento.length>0){

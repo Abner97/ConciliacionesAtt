@@ -34,6 +34,7 @@ export class CardsDataService {
   inconsistenciasOut: number;
   inconsistenciasIn: number;
   Graficas: charData[] = [];
+  
   constructor(private http: HttpClient) {
     this.inconsistenciasOut = 0;
     this.inconsistenciasIn = 0;
@@ -122,8 +123,13 @@ export class CardsDataService {
           }
           break;
       }
-
-      porcentaje = movistar.porcentaje + telcel.porcentaje;
+      
+      if (titulo == "PORTABILIDAD SALIENTE") {
+        porcentaje = movistar.porcentaje + telcel.porcentaje;
+      } else if (titulo == "PORTABILIDAD ENTRANTE") {
+        porcentaje = movistar.porcentaje + telcel.porcentaje+nextel.porcentaje;
+      }
+      
       console.log(movistar.porcentaje + telcel.porcentaje);
       console.log(movistar);
     });

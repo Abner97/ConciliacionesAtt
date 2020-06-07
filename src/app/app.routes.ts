@@ -12,9 +12,13 @@ import { LoginComponent } from './components/login/login.component';
 import { CanActivateGuard } from './guards/can-activate.guard';
 import { OnlyLoggedGuard } from './guards/only-logged.guard';
 import { IsLoggedInGuard } from './guards/is-logged-in.guard';
+import { PortabilidadOutComponent } from './components/portabilidad-out/portabilidad-out.component';
+import { PortabilidadInComponent } from './components/portabilidad-in/portabilidad-in.component';
 
 const APP_ROUTES: Routes = [
 {path: 'home', component: HomeComponent, canActivate:[CanActivateGuard, OnlyLoggedGuard]},
+{path: 'portabilidad-out', component:PortabilidadOutComponent, canActivate:[CanActivateGuard, OnlyLoggedGuard]},
+{path: 'portabilidad-in', component:PortabilidadInComponent, canActivate:[CanActivateGuard, OnlyLoggedGuard]},
 {path: 'menu', component: MenuComponent , canActivate:[CanActivateGuard, OnlyLoggedGuard]},
 {path: 'rojo', component: RojoComponent , canActivate:[CanActivateGuard, OnlyLoggedGuard]},
 {path: 'amarillo', component: AmarilloComponent , canActivate:[CanActivateGuard, OnlyLoggedGuard]},
