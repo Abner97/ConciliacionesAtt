@@ -13,6 +13,7 @@ export interface charData {
   options: any;
   width: number;
   height: number;
+  route:string;
 }
 
 interface telefonicaOutData {
@@ -84,15 +85,20 @@ export class CardsDataService {
     let tempArray: number[] = [];
     let titulo: string = datos[0].ESCENARIO;
     let porcentaje: number = 0;
-    
+    let transacciones:number=100000; //total de transacciones (dato estático para prueba);
+    let route:string="";
 
     datos.forEach(element => {
+
+   
       tempArray.push(element.INCONSISTENCIAS);
       //console.log(element);
       if (titulo == "PORTABILIDAD SALIENTE") {
         this.inconsistenciasOut = this.inconsistenciasOut + element.INCONSISTENCIAS;
+        route="portabilidad-out";
       } else if (titulo == "PORTABILIDAD ENTRANTE") {
         this.inconsistenciasIn = this.inconsistenciasOut + element.INCONSISTENCIAS;
+        route="portabilidad-in";
       }
 
       switch (element.SUBESCENARIO) {
@@ -125,9 +131,9 @@ export class CardsDataService {
       }
       
       if (titulo == "PORTABILIDAD SALIENTE") {
-        porcentaje = movistar.porcentaje + telcel.porcentaje;
+        porcentaje = 100 - ((movistar.inconsistencias + telcel.inconsistencias)*100)/transacciones;
       } else if (titulo == "PORTABILIDAD ENTRANTE") {
-        porcentaje = movistar.porcentaje + telcel.porcentaje+nextel.porcentaje;
+        porcentaje = 100 - ((movistar.inconsistencias + telcel.inconsistencias+nextel.inconsistencias)*100)/transacciones;
       }
       
       console.log(movistar.porcentaje + telcel.porcentaje);
@@ -138,13 +144,13 @@ export class CardsDataService {
       title: `REPORTE DE ${titulo}`,
       type: 'PieChart',
       data: [
-        ['No completado', 100 - porcentaje],
-        ['Porcentaje total inconsistencias', porcentaje]
+        ['Iconsistencias', 100 - porcentaje],
+        ['Transacciones', porcentaje]
       ],
       columnNames: ['Browser', 'Percentage'],
       options: {
         pieHole: 0.8,
-        colors: ['transparent', 'green'],
+        colors: ['white', 'green'],
         legend: 'none',
         pieSliceText: 'none',
         pieSliceTextStyle: {
@@ -152,7 +158,8 @@ export class CardsDataService {
         },
       },
       width: 340,
-      height: 400
+      height: 400,
+      route: route
     })
     console.log(this.Graficas);
     //  this.limiteInferior=Math.min(...tempArray);
@@ -257,7 +264,6 @@ export class CardsDataService {
   getCards() {
     return this.Graficas;
   }
-
 
   getHomeCard() {
     return this.Graficas;

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card',
@@ -14,8 +15,19 @@ export class CardComponent implements OnInit {
   @Input() width:any[];
   @Input() height:any[];
   @Input() colors:any[];
+  @Input() route?:string;
+  @Input() inconsistencias?:any[];
 
-  constructor() { }
+  
+  constructor(private router:Router) { }
+
+  detalles(route:string){
+   
+    this.router.navigate([`/${route}`]);
+    console.log(route);
+
+  }
+
 
   ngOnInit(): void {
     
