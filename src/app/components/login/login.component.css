@@ -1,0 +1,17 @@
+html, body { 
+    height: 100%; 
+    margin: 0px; 
+    padding: 0px; 
+}
+.img-div{
+    width: 35%;
+    display: flex;
+    align-self: center;
+}
+.onehundred{
+    height: 100%;
+}
+
+.login{
+    margin-top: 12em;
+}
