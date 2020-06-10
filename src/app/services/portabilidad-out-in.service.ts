@@ -54,10 +54,10 @@ export class PortabilidadOutInService {
     
 
     if (titulo == "PORTABILIDAD SALIENTE") {
-      colores.push('red','yellow')
+      colores.push('#ef7b05','#006cb6')
       
     } else if (titulo == "PORTABILIDAD ENTRANTE") {
-      colores.push('red', 'yellow','orange');
+      colores.push('#ef7b05', 'yellow','#006cb6');
     }
 
     datos.forEach(element => {
@@ -72,15 +72,13 @@ export class PortabilidadOutInService {
       options: {
         colors: colores,
         is3D: true,
-        pieSliceTextStyle: {
-          color: 'black',
-        },
+        fontSize: 16
       },
-      width: 700,
-      height: 700
+      width: 650,
+      height: 500
     }
 
-    console.log("GRAAA");
+  //  console.log("GRAAA");
     console.log(this.Grafica);
   }
 
@@ -128,7 +126,7 @@ export class PortabilidadOutInService {
   }
 
   getGraph() {
-    console.log("imprimendo graph en return");
+  //  console.log("imprimendo graph en return");
     console.log(this.Grafica);
     return this.Grafica;
   }
