@@ -40,6 +40,7 @@ import { DetallesOutComponent } from './components/detalles-out/detalles-out.com
 import { PortabilidadOutComponent } from './components/portabilidad-out/portabilidad-out.component';
 import { PortabilidadOutInService } from './services/portabilidad-out-in.service';
 import { PortabilidadInComponent } from './components/portabilidad-in/portabilidad-in.component';
+import { DetallesGeneralComponent } from './components/detalles-general/detalles-general.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -63,7 +64,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NewUserFormComponent,
     DetallesOutComponent,
     PortabilidadOutComponent,
-    PortabilidadInComponent
+    PortabilidadInComponent,
+    DetallesGeneralComponent
   ],
   imports: [
     BrowserModule,

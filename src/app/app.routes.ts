@@ -14,6 +14,7 @@ import { OnlyLoggedGuard } from './guards/only-logged.guard';
 import { IsLoggedInGuard } from './guards/is-logged-in.guard';
 import { PortabilidadOutComponent } from './components/portabilidad-out/portabilidad-out.component';
 import { PortabilidadInComponent } from './components/portabilidad-in/portabilidad-in.component';
+import { DetallesGeneralComponent } from './components/detalles-general/detalles-general.component';
 
 const APP_ROUTES: Routes = [
 {path: 'home', component: HomeComponent, canActivate:[CanActivateGuard, OnlyLoggedGuard]},
@@ -27,6 +28,7 @@ const APP_ROUTES: Routes = [
 {path: 'inout', component: InOutChartComponent , canActivate:[CanActivateGuard, OnlyLoggedGuard]},
 {path: 'detalles-out', component: DetallesOutComponent , canActivate:[CanActivateGuard, OnlyLoggedGuard]},
 {path: 'histograma-detalles/:row', component:HistogramaDetalleComponent , canActivate:[CanActivateGuard, OnlyLoggedGuard]},
+{path: 'detalles-general/:data', component:DetallesGeneralComponent , canActivate:[CanActivateGuard, OnlyLoggedGuard]},
 {path: 'login', component:LoginComponent, canActivate:[IsLoggedInGuard]},
 
 

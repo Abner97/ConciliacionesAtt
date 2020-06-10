@@ -32,7 +32,7 @@ handler(evento){
     
     if(evento.length>0){
       console.log(evento[0].row)
-      window.location.href='/histograma-detallesp/'+evento[0].row;
+      //window.location.href='/histograma-detallesp/'+evento[0].row;
     }
   }
 

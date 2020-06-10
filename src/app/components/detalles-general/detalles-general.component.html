@@ -1,0 +1,11 @@
+<table class="table">
+    <thead>
+        <th *ngFor="let index of this.data[1]">{{index}}</th>
+    </thead>
+    <tbody>
+        <tr>
+            <td *ngFor="let index of this.data[0]">{{index}}</td>
+        </tr>
+    </tbody>
+</table>
+<button (click)="volver()">Volver</button>
