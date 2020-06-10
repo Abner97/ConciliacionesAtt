@@ -24,7 +24,7 @@ export class PortabilidadOutInService {
   inconsistenciasIn: number;
   private Grafica: charData; 
   private datos:any[];
-
+  uri = "http://137.117.78.117:3000";
 
   constructor(private http: HttpClient) {
     this.inconsistenciasOut = 0;
@@ -104,7 +104,7 @@ export class PortabilidadOutInService {
     const promise = new Promise<boolean>((resolve, reject) => {
       this.http
         //.get(`/portabilidad_gral/${offset}`,{headers:this.headers})
-        .get(request, { headers: this.headers })
+        .get(this.uri+request, { headers: this.headers })
         .toPromise()
         .then((res: any[]) => {
           // Success

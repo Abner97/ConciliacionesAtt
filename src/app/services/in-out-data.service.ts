@@ -20,7 +20,7 @@ export class InOutDataService {
 
   constructor(private http: HttpClient) { }
 
- // uri = "apiattsmc.eastus.cloudapp.azure.com:3000";
+  uri = "http://137.117.78.117:3000";
   token;
   response:any[]=[];
   datos:any[]=[];
@@ -84,7 +84,7 @@ export class InOutDataService {
   
     const promise = new Promise<boolean>((resolve, reject) => {
       this.http
-        .get(`/portabilidad_gral/${offset}`,{headers:this.headers})
+        .get(`${this.uri}/portabilidad_gral/${offset}`,{headers:this.headers})
         .toPromise()
         .then((res: any[]) => {
           // Success

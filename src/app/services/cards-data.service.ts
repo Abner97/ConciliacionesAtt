@@ -29,7 +29,7 @@ interface telefonicaOutData {
 
 
 export class CardsDataService {
-
+  uri = "http://137.117.78.117:3000";
   limiteSuperior: number;
   limiteInferior: number;
   inconsistenciasOut: number;
@@ -206,7 +206,7 @@ export class CardsDataService {
     const promise = new Promise<boolean>((resolve, reject) => {
       this.http
         //.get(`/portabilidad_gral/${offset}`,{headers:this.headers})
-        .get('/portabilidad_operador_out', { headers: this.headers })
+        .get(`${this.uri}/portabilidad_operador_out`, { headers: this.headers })
         .toPromise()
         .then((res: any[]) => {
           // Success
@@ -235,7 +235,7 @@ export class CardsDataService {
     const promise = new Promise<boolean>((resolve, reject) => {
       this.http
         //.get(`/portabilidad_gral/${offset}`,{headers:this.headers})
-        .get('/portabilidad_operador_in', { headers: this.headers })
+        .get(`${this.uri}/portabilidad_operador_in`, { headers: this.headers })
         .toPromise()
         .then((res: any[]) => {
           // Success
