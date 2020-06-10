@@ -14,14 +14,14 @@ interface Course {
   providedIn: 'root'
 })
 export class AuthService {
-  uri = "apiattsmc.eastus.cloudapp.azure.com:3000";
+  uri = "http://137.117.78.117:3000";
   token;
   headers = new HttpHeaders({
     'Content-Type': 'application/json' });
   options = { headers: this.headers };
 
   constructor(private http: HttpClient,private router: Router) { }
-  //Login
+  //Logine
   login(user: string, password: string) {
     /*{//prueba
       localStorage.setItem('auth_token', 'prueba no backend');
