@@ -15,9 +15,10 @@ export class NaranjaComponent implements OnInit {
     this._cardsService.cleanArray();
     (async () => {
     console.log("await");
-    //  await this._cardsService.setCards("in","nextel");
-    await this._cardsService.cleanArray();
-     await this._cardsService.setCards("out","nextel");
+     await this._cardsService.cleanArray();
+     await this._cardsService.setCards("in","nextel");
+     
+     //await this._cardsService.setCards("out","nextel");
      this.inconsistenciasOut=this._cardsService.getInconsistenciasOut();
      this.inconssistenciasIn=this._cardsService.getInconsistenciasIn();
      this.cards = this._cardsService.getHomeCard();

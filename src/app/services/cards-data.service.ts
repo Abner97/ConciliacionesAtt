@@ -84,6 +84,8 @@ export class CardsDataService {
     let nextel: telefonicaOutData = {};
     let tempArray: number[] = [];
     let titulo: string = datos[0].ESCENARIO;
+    let nombreTelefonica:string="";
+    let color="green";
     let porcentaje: number = 0;
     let transacciones: number = 100000; //total de transacciones (dato estático para prueba);
     let route: string = "";
@@ -118,6 +120,8 @@ export class CardsDataService {
             porcentaje: element.PORCENTAJE,
             fechaProceso: element.FECHA_PROCESO
           }
+          console.log("Nombre");
+          console.log(telcel.nombre);
           break;
 
         case "NEXTEL":
@@ -133,8 +137,12 @@ export class CardsDataService {
       if (titulo == "PORTABILIDAD SALIENTE") {
         
         if(telefonica=="movistar"){
+          nombreTelefonica=movistar.nombre;
           porcentaje=100-(movistar.inconsistencias*100)/transacciones;
         }else if(telefonica=="telcel"){
+          nombreTelefonica=telcel.nombre;
+          color="blue";
+          console.log(titulo);
           porcentaje=100-(telcel.inconsistencias*100)/transacciones;
        
         }else{
@@ -142,11 +150,16 @@ export class CardsDataService {
         }
       } else if (titulo == "PORTABILIDAD ENTRANTE") {
         if(telefonica=="movistar"){
+          nombreTelefonica=movistar.nombre;
           porcentaje=100-(movistar.inconsistencias*100)/transacciones;
         }else if(telefonica=="telcel"){
+          color="blue";
+          nombreTelefonica=telcel.nombre;
           porcentaje=100-(telcel.inconsistencias*100)/transacciones;
        
         }else if(telefonica=="nextel"){
+          color="orange";
+          nombreTelefonica=nextel.nombre;
           porcentaje=100-(nextel.inconsistencias*100)/transacciones;
         }else{
           porcentaje = 100 - ((movistar.inconsistencias + telcel.inconsistencias + nextel.inconsistencias) * 100) / transacciones;
@@ -159,7 +172,7 @@ export class CardsDataService {
     });
 
     this.Graficas.push({
-      title: `REPORTE DE ${titulo}`,
+      title: `REPORTE DE ${titulo}  ${nombreTelefonica}`,
       type: 'PieChart',
       data: [
         ['Iconsistencias', 100 - porcentaje],
@@ -168,7 +181,7 @@ export class CardsDataService {
       columnNames: ['Browser', 'Percentage'],
       options: {
         pieHole: 0.8,
-        colors: ['white', 'green'],
+        colors: ['white', color],
         legend: 'none',
         pieSliceText: 'none',
         pieSliceTextStyle: {
