@@ -13,7 +13,7 @@ export interface charData {
   options: any;
   width: number;
   height: number;
-  route:string;
+  route: string;
 }
 
 interface telefonicaOutData {
@@ -35,11 +35,11 @@ export class CardsDataService {
   inconsistenciasOut: number;
   inconsistenciasIn: number;
   Graficas: charData[] = [];
-  
+
   constructor(private http: HttpClient) {
     this.inconsistenciasOut = 0;
     this.inconsistenciasIn = 0;
-    
+
 
   }
 
@@ -76,7 +76,7 @@ export class CardsDataService {
   // },
 
 
-  createContent(datos: any[]) {
+  createContent(datos: any[],telefonica?:string) {
 
     //let graficaOut:charData;
     let movistar: telefonicaOutData = {};
@@ -85,20 +85,20 @@ export class CardsDataService {
     let tempArray: number[] = [];
     let titulo: string = datos[0].ESCENARIO;
     let porcentaje: number = 0;
-    let transacciones:number=100000; //total de transacciones (dato estático para prueba);
-    let route:string="";
+    let transacciones: number = 100000; //total de transacciones (dato estático para prueba);
+    let route: string = "";
 
     datos.forEach(element => {
 
-   
+
       tempArray.push(element.INCONSISTENCIAS);
       //console.log(element);
       if (titulo == "PORTABILIDAD SALIENTE") {
         this.inconsistenciasOut = this.inconsistenciasOut + element.INCONSISTENCIAS;
-        route="portabilidad-out";
+        route = "portabilidad-out";
       } else if (titulo == "PORTABILIDAD ENTRANTE") {
         this.inconsistenciasIn = this.inconsistenciasOut + element.INCONSISTENCIAS;
-        route="portabilidad-in";
+        route = "portabilidad-in";
       }
 
       switch (element.SUBESCENARIO) {
@@ -129,13 +129,31 @@ export class CardsDataService {
           }
           break;
       }
-      
+
       if (titulo == "PORTABILIDAD SALIENTE") {
-        porcentaje = 100 - ((movistar.inconsistencias + telcel.inconsistencias)*100)/transacciones;
+        
+        if(telefonica=="movistar"){
+          porcentaje=100-(movistar.inconsistencias*100)/transacciones;
+        }else if(telefonica=="telcel"){
+          porcentaje=100-(telcel.inconsistencias*100)/transacciones;
+       
+        }else{
+          porcentaje = 100 - ((movistar.inconsistencias + telcel.inconsistencias) * 100) / transacciones;
+        }
       } else if (titulo == "PORTABILIDAD ENTRANTE") {
-        porcentaje = 100 - ((movistar.inconsistencias + telcel.inconsistencias+nextel.inconsistencias)*100)/transacciones;
+        if(telefonica=="movistar"){
+          porcentaje=100-(movistar.inconsistencias*100)/transacciones;
+        }else if(telefonica=="telcel"){
+          porcentaje=100-(telcel.inconsistencias*100)/transacciones;
+       
+        }else if(telefonica=="nextel"){
+          porcentaje=100-(nextel.inconsistencias*100)/transacciones;
+        }else{
+          porcentaje = 100 - ((movistar.inconsistencias + telcel.inconsistencias + nextel.inconsistencias) * 100) / transacciones;
+        }
+        
       }
-      
+
       console.log(movistar.porcentaje + telcel.porcentaje);
       console.log(movistar);
     });
@@ -162,20 +180,7 @@ export class CardsDataService {
       route: route
     })
     console.log(this.Graficas);
-    //  this.limiteInferior=Math.min(...tempArray);
-    //  this.limiteSuperior=Math.max(...tempArray);
-
-
-
-
-
-    // datos.forEach(element => {
-    //   let tempGrapH:charData={
-    //     title:element.
-    //   }
-    //   graficas.push()
-    // });
-
+    
   }
 
   getInconsistenciasOut() {
@@ -201,18 +206,25 @@ export class CardsDataService {
     this.createContent(this.datos);
   }
 
-  getCardsOut() {//posible solución , corregir post, hacer trim del response
-
+  setCards(type: string,telefonica?:string) {
+    
+    let req = "";
+    if (type == "in") {
+      this.Graficas.splice(0, this.Graficas.length);//se vacia el array de graficas aquí, porque "in" es el primero que se pide y no queremos que se dupliquen las gráficas.
+      req = "/portabilidad_operador_in";
+    } else if(type == "out"){
+      
+      req = "/portabilidad_operador_out";
+    }
     const promise = new Promise<boolean>((resolve, reject) => {
       this.http
-        //.get(`/portabilidad_gral/${offset}`,{headers:this.headers})
-        .get(`${this.uri}/portabilidad_operador_out`, { headers: this.headers })
+        .get(`${this.uri}${req}`, { headers: this.headers })
         .toPromise()
         .then((res: any[]) => {
           // Success
           console.log(res);
-          this.createContent(res);
 
+          this.createContent(res,telefonica)
           resolve(true);
 
         },
@@ -228,38 +240,6 @@ export class CardsDataService {
 
 
   }
-
-  getCardsIn() {//posible solución , corregir post, hacer trim del response
-    this.Graficas.splice(0, this.Graficas.length);
-    console.log("in");
-    const promise = new Promise<boolean>((resolve, reject) => {
-      this.http
-        //.get(`/portabilidad_gral/${offset}`,{headers:this.headers})
-        .get(`${this.uri}/portabilidad_operador_in`, { headers: this.headers })
-        .toPromise()
-        .then((res: any[]) => {
-          // Success
-          console.log(res);
-          this.createContent(res);
-
-          resolve(true);
-
-        },
-          err => {
-            // Error
-            reject(false);
-            console.log(err);
-
-          }
-        );
-    });
-
-    return promise;
-
-
-  }
-
-
 
   getCards() {
     return this.Graficas;
@@ -268,22 +248,9 @@ export class CardsDataService {
   getHomeCard() {
     return this.Graficas;
   }
+
+  cleanArray(){
+    this.Graficas.splice(0, this.Graficas.length)
+  }
 }
 
-// title = 'Browser market shares at a specific website, 2014';
-//   type = 'PieChart';
-//   data = [
-
-//      ['IE', 26.8],
-//      ['Chrome', 12.8],
-//      ['Safari', 8.5],
-//      ['Opera', 6.2],
-//      ['Others', 0.7] 
-//   ];
-//   columnNames = ['Browser', 'Percentage'];
-//   options = { 
-//     pieHole: 0.7,
-
-//   };
-//   width = 400;
-//   height = 400;

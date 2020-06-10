@@ -1,1 +1,4 @@
-<app-card></app-card>
+<div class="row">
+    <app-card *ngFor="let card of cards" [title]="card.title" [type]="card.type" [data]="card.data" [columnNames]="card.columnNames" [options]="card.options" [width]="card.width" [height]="card.height" >
+    </app-card>
+</div>
