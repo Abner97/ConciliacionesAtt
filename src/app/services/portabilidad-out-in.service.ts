@@ -57,7 +57,7 @@ export class PortabilidadOutInService {
       colores.push('#ef7b05','#006cb6')
       
     } else if (titulo == "PORTABILIDAD ENTRANTE") {
-      colores.push('#ef7b05', 'yellow','#006cb6');
+      colores.push('#ef7b05', '#fbb800','#006cb6');
     }
 
     datos.forEach(element => {
