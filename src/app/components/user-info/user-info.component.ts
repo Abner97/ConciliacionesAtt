@@ -8,7 +8,8 @@ import { Router } from '@angular/router';
 })
 export class UserInfoComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) { 
+  }
 
   ngOnInit(): void {
   }
@@ -18,5 +19,9 @@ export class UserInfoComponent implements OnInit {
     localStorage.removeItem('auth_token');
     this.router.navigate(['login']);
     window.location.reload();
+  }
+
+  getUser(){
+    return(localStorage.getItem('username'))
   }
 }

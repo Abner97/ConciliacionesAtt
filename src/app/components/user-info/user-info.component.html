@@ -2,9 +2,9 @@
     <div class="my-auto margin-user"> 
         <img class="userImg" src="assets/img/user.png">
     </div>
-    <div class=" text-center">
-        <p> Usuario: Jonh Doe</p>
-        <p id="logout" (click)="handleCerrarSesion($event)"> Cerrar sesion</p>
+    <div class=" text-center m-0">
+        <p class="m-0 mb-2"> Usuario: {{getUser()}}</p>
+        <button class="btn btn-outline-danger btn-sm" (click)="handleCerrarSesion($event)"> Cerrar sesion</button>
     </div>
 </div>
 

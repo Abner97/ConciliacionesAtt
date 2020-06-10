@@ -28,6 +28,7 @@ export class AuthService {
       window.location.reload();
       this.router.navigate(['home']);
     }*/
+
     this.http.post(`${this.uri}/autenticar`, {user: user ,password: password})
     .subscribe((resp: any) => {
       console.log(resp)
@@ -39,6 +40,7 @@ export class AuthService {
     }else if(resp.mensaje =="Autenticación correcta"){
       // si la api regresa el mensaje "Autenticación correcta"
       console.log(resp);
+      localStorage.setItem('username', user);
       localStorage.setItem('auth_token', resp.token);
       this.router.navigate(['home']);
       window.location.reload();
@@ -49,6 +51,7 @@ export class AuthService {
     
     }
   logout() {
+      localStorage.removeItem('username');
       localStorage.removeItem('auth_token');
       this.router.navigate(['login']);
     }
