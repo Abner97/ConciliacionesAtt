@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "init-server": "node server.js",
-    "start": "npm run init-server && ng serve --proxy-config proxy.conf.json",
+    "start": "npm run init-server",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

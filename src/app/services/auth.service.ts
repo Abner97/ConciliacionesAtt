@@ -28,7 +28,7 @@ export class AuthService {
       window.location.reload();
       this.router.navigate(['home']);
     }*/
-    this.http.post('/autenticar', {user: user ,password: password})
+    this.http.post(`${this.uri}/autenticar`, {user: user ,password: password})
     .subscribe((resp: any) => {
       console.log(resp)
       if (resp.mensaje =="Usuario o contraseña incorrectos" ) {
