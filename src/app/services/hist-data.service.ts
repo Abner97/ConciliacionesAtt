@@ -18,7 +18,7 @@ export interface charData{
 export class HistDataService {
   constructor() { }
   private data: charData [] = [{
-    title :'Bill Cycle Acumlado por dia 2018',
+    title :'Bill Cycle Acumlado por dia',
     type : 'Bar',
     data : [
       ['Abril 1,2018', 100000],
@@ -38,7 +38,7 @@ export class HistDataService {
     options : { 
       colors:['green','red'],
     },
-    width : 1400,
+    width : 1100,
     height : 500
   }
   ]

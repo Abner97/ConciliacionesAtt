@@ -1,13 +1,23 @@
-<form class="m-5"(ngSubmit)="onSubmit()" [formGroup]="profileForm">
-    <div class=" row form-group">
-         <label for="exampleInputEmail1">Fecha de Consulta:
-            <input type="date" class="form-control" aria-describedby="emailHelp" formControlName="date">
-         </label>
-     </div>
-     <div class="row">
-         <button type="submit" class="btn btn-primary">Consultar</button>
-     </div> 
- </form>
+<div class="d-flex flex-wrap">
+    <div class="col-2 m-2 d-flex justify-content-center">
+        <form class="m-5"(ngSubmit)="onSubmit()" [formGroup]="profileForm">
+            <div class=" row form-group">
+                <label for="exampleInputEmail1">Fecha de Consulta:
+                    <input type="date" class="form-control" aria-describedby="emailHelp" formControlName="date">
+                </label>
+            </div>
+            <div class="row">
+                <button type="submit" class="btn btn-primary">Consultar</button>
+            </div> 
+         </form>
+    </div>
+    <div class="col">
+        <div class="d-flex justify-content-center m-5">
+            <google-chart #chart *ngIf="update" (select)="handler($event)" chart="data[0].chart" [title]="data[0].title" [type]='data[0].type' [data]="data[0].data" [columnNames]="data[0].columnNames" [options]="data[0].options" [width]="data[0].width" [height]="data[0].height">
+            </google-chart>
+        </div>
+    </div>
+</div>
 
-<google-chart #chart *ngIf="update" (select)="handler($event)" chart="data[0].chart" [title]="data[0].title" [type]='data[0].type' [data]="data[0].data" [columnNames]="data[0].columnNames" [options]="data[0].options" [width]="data[0].width" [height]="data[0].height">
-</google-chart>
+
+

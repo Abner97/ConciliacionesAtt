@@ -33,7 +33,7 @@ export class DetallesOutService {
 
   
   private data: charData[] = [{
-    title: 'Bill Cycle Acumlado por dia 2018',
+    title: 'Bill Cycle Acumlado por dia',
     type: 'ColumnChart',
     // data: [
     //   ['Abril 1,2018', 100000, 30000],
@@ -56,8 +56,8 @@ export class DetallesOutService {
       isStacked: true,
       bar: { groupWidth: '35%' },
     },
-    width: 1400,
-    height: 500
+    width: 1150,
+    height: 400
   }
   ]
 

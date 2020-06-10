@@ -1,24 +1,23 @@
 .card-header{
-    font-family: Cantarell;
-    font-style: normal;
     font-weight: 500;
-    font-size: 24px;
+    font-size: 1.1em;
     line-height: 34px;
     display: flex;
     align-items: center;
     text-align: center;
     color: #00A8E0;
 }
+.capitalize{
+    text-transform: capitalize;
+}
 .porcentaje{
     position: absolute;
-    width: 70px;
+    width: 100px;
     height: 43px;
-    left: 150px;
-    top: 230px;
-    font-family: Cantarell;
-    font-style: normal;
+    left: 136px;
+    top: 240px;
     font-weight: 500;
-    font-size: 24px;
+    font-size: 1.3em;
     line-height: 34px;
     display: flex;
     align-items: center;

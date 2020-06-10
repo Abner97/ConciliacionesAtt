@@ -18,6 +18,7 @@ export class DetallesOutComponent implements OnInit {
   });
   ngOnInit(): void {
     this.data = this._inOutData.getData();
+    //this.profileForm.setValue(new Date('2020-02-01'));
   }
   handler(evento){
     
@@ -31,6 +32,7 @@ export class DetallesOutComponent implements OnInit {
   this.update=false;
    let fechaConsulta=new Date(this.profileForm.value.date);
    let today= new Date();
+   console.log(this.profileForm.value);
   
    let resta = today.getTime() - fechaConsulta.getTime();
    let offset= Math.round(resta/ (1000*60*60*24));

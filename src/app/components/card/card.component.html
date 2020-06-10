@@ -1,9 +1,9 @@
-<div *ngIf="data; else elseBlock" class="card animated fadeIn fast m-2">
+<div *ngIf="data; else elseBlock" class=" column card animated fadeIn fast m-2">
     <div class="card-header">
         {{title}}
     </div>
     <app-google-chart [title]="title" [type]="type" [data]="data" [columnNames]="columnNames" [options]="options"
-        [width]="width" [height]="height"></app-google-chart>
+        [width]="width" [height]="height" class="d-flex flex-column"></app-google-chart>
     <p class="porcentaje">{{data[1].slice(1)}} %</p>
     <!--
         <p>{{type}}</p>

@@ -33,7 +33,7 @@ export class InOutDataService {
 
   
   private data: charData[] = [{
-    title: 'Bill Cycle Acumlado por dia 2018',
+    title: 'Bill Cycle Acumlado por dia',
     type: 'Line',
     // data: [
     //   ['Abril 1,2018', 100000, 30000],
@@ -54,8 +54,8 @@ export class InOutDataService {
     options: {
       colors: ['green', 'red', 'blue'],
     },
-    width: 1400,
-    height: 500
+    width: 1100,
+    height: 450
   }
   ]
 
