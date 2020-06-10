@@ -40,6 +40,7 @@ import { DetallesOutComponent } from './components/detalles-out/detalles-out.com
 import { PortabilidadOutComponent } from './components/portabilidad-out/portabilidad-out.component';
 import { PortabilidadOutInService } from './services/portabilidad-out-in.service';
 import { PortabilidadInComponent } from './components/portabilidad-in/portabilidad-in.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { PortabilidadInComponent } from './components/portabilidad-in/portabilid
     HttpClientModule,
     APP_ROUTING,
     GoogleChartsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [
   CardsDataService,
