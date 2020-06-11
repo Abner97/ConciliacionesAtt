@@ -73,11 +73,20 @@ export class AuthService {
     }
 
       })
-    
     }
   logout() {
       localStorage.removeItem('username');
       localStorage.removeItem('auth_token');
+      localStorage.setItem('TelcelOut',"0");
+      localStorage.removeItem('TelcelOut');
+      localStorage.setItem('TelcelIn',"0");
+      localStorage.removeItem('TelcelIn');
+      localStorage.setItem('MovistarOut',"0");
+      localStorage.removeItem('MovistarOut');
+      localStorage.setItem('MovistarIn',"0");
+      localStorage.removeItem('MovistarIn');
+      localStorage.setItem('NextelIn',"0");
+      localStorage.removeItem('NextelIn');
       this.router.navigate(['login']);
     }
    //Estamos IN?

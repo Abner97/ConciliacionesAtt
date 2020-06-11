@@ -6,27 +6,27 @@ import {CardsDataService, charData} from '../../services/cards-data.service';
   styleUrls: ['./naranja.component.css']
 })
 export class NaranjaComponent implements OnInit {
-
+  rt="detalles-general/3";
   cards: charData[] = [];
   colors:['red','grey'];
   inconsistenciasOut:number=0;
-  inconssistenciasIn:number=0;
+  inconsistenciasIn:number=0;
   constructor(private _cardsService: CardsDataService) {
     this._cardsService.cleanArray();
     (async () => {
     console.log("await");
      await this._cardsService.cleanArray();
      await this._cardsService.setCards("in","nextel");
-     
      //await this._cardsService.setCards("out","nextel");
      this.inconsistenciasOut=this._cardsService.getInconsistenciasOut();
-     this.inconssistenciasIn=this._cardsService.getInconsistenciasIn();
+     this.inconsistenciasIn=this._cardsService.getInconsistenciasIn();
      this.cards = this._cardsService.getHomeCard();
-     
+     localStorage.setItem('NextelIn', JSON.stringify(this.inconsistenciasIn))
     })()
   
   }
   ngOnInit(): void {
     this._cardsService.cleanArray();
  }
+ 
 }

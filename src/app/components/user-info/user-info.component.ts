@@ -40,9 +40,14 @@ export class UserInfoComponent implements OnInit {
       confirmButtonText: 'Si, cerrar sesión'
     }).then((result) => {
       if (result.value) {
-        localStorage.removeItem('auth_token');
         localStorage.removeItem('username');
-        this.router.navigate(['login']);
+        localStorage.removeItem('auth_token');
+        localStorage.removeItem('TelcelOut');
+        localStorage.removeItem('TelcelIn');
+        localStorage.removeItem('MovistarOut');
+        localStorage.removeItem('MovistarIn');
+        localStorage.removeItem('NextelIn');
+      this.router.navigate(['login']);
         
         Toast.fire({
           icon: 'warning',

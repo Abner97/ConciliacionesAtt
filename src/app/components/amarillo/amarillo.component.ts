@@ -6,11 +6,11 @@ import {CardsDataService, charData} from '../../services/cards-data.service';
   templateUrl: './amarillo.component.html',
 })
 export class AmarilloComponent implements OnInit {
-
+  rt="detalles-general/2"
   cards: charData[] = [];
   colors:['red','grey'];
   inconsistenciasOut:number=0;
-  inconssistenciasIn:number=0;
+  inconsistenciasIn:number=0;
   constructor(private _cardsService: CardsDataService) {
     this._cardsService.cleanArray();
     (async () => {
@@ -18,13 +18,14 @@ export class AmarilloComponent implements OnInit {
      await this._cardsService.setCards("in","movistar");
      await this._cardsService.setCards("out","movistar");
      this.inconsistenciasOut=this._cardsService.getInconsistenciasOut();
-     this.inconssistenciasIn=this._cardsService.getInconsistenciasIn();
+     this.inconsistenciasIn=this._cardsService.getInconsistenciasIn();
      this.cards = this._cardsService.getHomeCard();
+     localStorage.setItem('MovistarIn', JSON.stringify(this.inconsistenciasIn));
+     localStorage.setItem('MovistarOut', JSON.stringify(this.inconsistenciasOut));
      
     })()
-  
   }
-
+  
   ngOnInit(): void {
     this._cardsService.cleanArray();
   }

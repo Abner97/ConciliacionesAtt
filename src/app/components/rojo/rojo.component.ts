@@ -9,9 +9,10 @@ import {CardsDataService, charData} from '../../services/cards-data.service';
 
 export class RojoComponent implements OnInit {
  cards: charData[] = [];
+ rt="detalles-general/1";
   colors:['red','grey'];
   inconsistenciasOut:number=0;
-  inconssistenciasIn:number=0;
+  inconsistenciasIn:number=0;
   constructor(private _cardsService: CardsDataService) {
     this._cardsService.cleanArray();
     (async () => {
@@ -19,9 +20,10 @@ export class RojoComponent implements OnInit {
      await this._cardsService.setCards("in","telcel");
      await this._cardsService.setCards("out","telcel");
      this.inconsistenciasOut=this._cardsService.getInconsistenciasOut();
-     this.inconssistenciasIn=this._cardsService.getInconsistenciasIn();
+     this.inconsistenciasIn=this._cardsService.getInconsistenciasIn();
      this.cards = this._cardsService.getHomeCard();
-     
+     localStorage.setItem('TelcelIn', JSON.stringify(this.inconsistenciasIn));
+     localStorage.setItem('TelcelOut', JSON.stringify(this.inconsistenciasOut));
     })()
   
   }
@@ -29,5 +31,4 @@ export class RojoComponent implements OnInit {
   ngOnInit(): void {
     this._cardsService.cleanArray();
   }
-
 }
