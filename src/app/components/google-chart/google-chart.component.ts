@@ -1,7 +1,19 @@
+/**
+* Este modulo se encarga de crear las google-charts.
+* 
+*
+*
+*
+* @author Ricardo Martinez y Abraham Vega
+* @date 10-06-2020
+*/
+
+
+
+
+
 import { Component, OnInit, Input } from '@angular/core';
-import { GoogleChartsModule } from 'angular-google-charts';
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+
 
 
 @Component({

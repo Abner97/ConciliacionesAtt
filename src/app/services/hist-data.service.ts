@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { NONE_TYPE } from '@angular/compiler';
 
 export interface charData{
   title: string;

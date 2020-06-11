@@ -1,3 +1,14 @@
+/**
+* Este script crea el servidor para que la app funcione en Heroku.
+* 
+*Está creado usando express.js
+*No borrar el archivo Aptfile necesario para que la app funcione correctamente en Heroku. 
+* @author Abraham Vega
+* @date 10-06-2020
+*/
+
+
+
 //Install express server
 const express = require('express');
 const path = require('path');

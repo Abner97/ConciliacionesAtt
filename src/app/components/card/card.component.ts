@@ -1,3 +1,15 @@
+/**
+* Este modulo se encarga de crear el componente de las cards.
+* 
+*
+*
+*
+* @author Ricardo Martinez y Abraham Vega
+* @date 10-06-2020
+*/
+
+
+
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -20,7 +32,10 @@ export class CardComponent implements OnInit {
 
   
   constructor(private router:Router) { }
-
+  
+    /**
+*Esta función se activa cuando el usuario hace clic en el botón detalles de una card.
+*/  
   detalles(route:string){
    
     this.router.navigate([`/${route}`]);
@@ -34,19 +49,3 @@ export class CardComponent implements OnInit {
   }
 
 }
-// title :'Browser market shares at a specific website, 2014',
-//     type : 'PieChart',
-//     data : [
-     
-//      ['IE', 26.8],
-//      ['Chrome', 12.8],
-//      ['Safari', 8.5],
-//      ['Opera', 6.2],
-//      ['Others', 0.7] 
-//     ],
-//     columnNames : ['Browser', 'Percentage'],
-//     options : { 
-//     pieHole: 0.7
-//    },
-//     width : 400,
-//     height : 400
