@@ -1,10 +1,22 @@
+/**
+* Este modulo se encarga de crear la informacion de las cards que están en home, azul, verde y naranja.
+* 
+*Se hace una peteción http tipo GET a la Api para obtener los datos de portabilidad_in y portabilidad_out
+* 
+*
+*
+* @author Ricardo Martinez y Abraham Vega
+* @date 10-06-2020
+*/
+
 import { Injectable } from '@angular/core';
-import { NONE_TYPE } from '@angular/compiler';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { element } from 'protractor';
-import { title } from 'process';
 
 
+/**
+*Esta interfaz contiene el formato de los datos que se necesitan para generar la google charts
+* 
+*/
 export interface charData {
   title: string;
   type: string;
@@ -16,6 +28,10 @@ export interface charData {
   route: string;
 }
 
+/**
+*Esta interfaz contiene el formato de los datos que se necesitan guardar los datos por telefónica
+* 
+*/
 interface telefonicaOutData {
   nombre?: string;
   inconsistencias?: number;
@@ -29,6 +45,7 @@ interface telefonicaOutData {
 
 
 export class CardsDataService {
+
   uri = "http://137.117.78.117:3000";
   limiteSuperior: number;
   limiteInferior: number;
@@ -43,9 +60,6 @@ export class CardsDataService {
 
   }
 
-
-
-
   response: any[] = [];
   datos: any[] = [];
 
@@ -54,38 +68,21 @@ export class CardsDataService {
     'access-token': localStorage.auth_token
   });
 
-  // private cards: charData [] = [{
-  //   title :'Ejemplo 1',
-  //   type : 'PieChart',
-  //   data : [
-  //     ['No completado', 100-75],
-  //     ['Porcentaje total inconsistencias', 75] 
-  //   ],
-  //   columnNames : ['Browser', 'Percentage'],
-  //   options : { 
-  //     pieHole: 0.8,
-  //     colors:['black','green'],
-  //     legend: 'none',
-  //     pieSliceText: 'none',
-  //     pieSliceTextStyle: {
-  //       color: 'black',
-  //     },
-  //   },
-  //   width : 340,
-  //   height : 400
-  // },
-
-
+  
+  /**
+  *Esta función se encarga de crear el contenido de las cards
+  * @param datos - Obtiene la respuesta de la API.
+  * @param telefonica - nombre de la telefónica de donde se quiere obtener los datos (opcional).
+  */
   createContent(datos: any[],telefonica?:string) {
 
-    //let graficaOut:charData;
     let movistar: telefonicaOutData = {};
     let telcel: telefonicaOutData = {};
     let nextel: telefonicaOutData = {};
-    let tempArray: number[] = [];
+    let tempArray: number[] = [];//guarda el total de incosistencias
     let titulo: string = datos[0].ESCENARIO;
     let nombreTelefonica:string="";
-    let color="green";
+    let color="green"; //color por default de las graficas de kpi
     let porcentaje: number = 0;
     let transacciones: number = 100000; //total de transacciones (dato estático para prueba);
     let route: string = "";
@@ -95,6 +92,7 @@ export class CardsDataService {
 
       tempArray.push(element.INCONSISTENCIAS);
       //console.log(element);
+      
       if (titulo == "PORTABILIDAD SALIENTE") {
         this.inconsistenciasOut = this.inconsistenciasOut + element.INCONSISTENCIAS;
         route = "portabilidad-out";
@@ -134,21 +132,20 @@ export class CardsDataService {
           break;
       }
 
-      if (titulo == "PORTABILIDAD SALIENTE") {
+      if (titulo == "PORTABILIDAD SALIENTE") {//Si el subescenario es PORTABILIDAD SALIENTE genera solo datos para este tipo de SUBESCENARIO
         
-        if(telefonica=="movistar"){
+        if(telefonica=="movistar"){ //si se llega a pedir solo los datos de una telefonica, solo guardara datos para esa telefonica si no generara los datos generales que se ven en Home
           nombreTelefonica=movistar.nombre;
           porcentaje=100-(movistar.inconsistencias*100)/transacciones;
         }else if(telefonica=="telcel"){
           nombreTelefonica=telcel.nombre;
           color="blue";
-          console.log(titulo);
           porcentaje=100-(telcel.inconsistencias*100)/transacciones;
        
         }else{
           porcentaje = 100 - ((movistar.inconsistencias + telcel.inconsistencias) * 100) / transacciones;
         }
-      } else if (titulo == "PORTABILIDAD ENTRANTE") {
+      } else if (titulo == "PORTABILIDAD ENTRANTE") {//Si el subescenario es PORTABILIDAD SALIENTE genera solo datos para este tipo de SUBESCENARIO
         if(telefonica=="movistar"){
           nombreTelefonica=movistar.nombre;
           porcentaje=100-(movistar.inconsistencias*100)/transacciones;
@@ -167,11 +164,9 @@ export class CardsDataService {
         
       }
 
-      console.log(movistar.porcentaje + telcel.porcentaje);
-      console.log(movistar);
     });
 
-    this.Graficas.push({
+    this.Graficas.push({ //guarda el contenido de las graficas que se van a presentar en un array
       title: `REPORTE DE ${titulo}  ${nombreTelefonica}`,
       type: 'PieChart',
       data: [
@@ -192,33 +187,34 @@ export class CardsDataService {
       height: 400,
       route: route
     })
-    console.log(this.Graficas);
     
   }
-
+  
+  /**
+  *
+  * @returns devuelve el total de inconsistencias en portabilidad out
+  * 
+  */
   getInconsistenciasOut() {
     return this.inconsistenciasOut;
   }
 
+    /**
+  *
+  * @returns devuelve el total de inconsistencias en portabilidad in
+  * 
+  */
   getInconsistenciasIn() {
     return this.inconsistenciasIn;
   }
 
-  cleanData(response: any[]) {
-    //this.datos=[[]]; Porque rayos no me deja limpiar el array WTF!
-    //this.datos.splice(0, this.datos.length);
-
-    this.datos.splice(0, this.datos.length)
-    response.forEach(element => {
-      console.log(element.FECHA_PROCESO);
-      let slicedDate = element.FECHA_PROCESO.slice(0, element.FECHA_PROCESO.search("T"));
-      this.datos.push([element.CATEGORIA, element.CONCILIACION, element.SHDES_ESCENARIO, element.ESCENARIO, element.SUBESCENARIO,
-      element.ID_SUBESCENARIO, element.INCONSISTENCIAS, element.PORCENTAJ, slicedDate]);
-    });
-    this.datos = this.datos.reverse();
-    this.createContent(this.datos);
-  }
-
+     /**
+  *Esta funcion se encarga de hacer la petición a la API para portabilidad_operador_out y portabilidad_operador_in
+  * @param type - tipo de peticion que se hara (in o out);
+  * @param telefonica - cuando se va a generar los kpi para cada telefonica en este parametro se especifica el nombre de la telefonica que desea obtener el kpi (movistar,telcel o nextel)
+  * @returns devuelve el resultado de la promesa true o false
+  * 
+  */
   setCards(type: string,telefonica?:string) {
     
     let req = "";
@@ -254,14 +250,21 @@ export class CardsDataService {
 
   }
 
+
+  /**
+  *
+  * Devuelve el array con los datos para generar las graficas
+  * 
+  */
   getCards() {
     return this.Graficas;
   }
 
-  getHomeCard() {
-    return this.Graficas;
-  }
-
+  /**
+  *
+  * Limpia el array que contiene los datos de las graficas.
+  * 
+  */
   cleanArray(){
     this.Graficas.splice(0, this.Graficas.length)
   }

@@ -1,7 +1,23 @@
-import { Injectable, Inject } from '@angular/core';
+/**
+* Este modulo se encarga de crear la informacion de la grafica detalles_out;
+* 
+*Se hace una peteción http tipo GET a la Api para obtener los datos de Detalles ot;
+* 
+*
+*
+* @author Ricardo Martinez y Abraham Vega
+* @date 10-06-2020
+*/
+
+
+
+import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-
+/**
+*Esta interfaz contiene el formato de los datos que se necesitan para generar la google charts
+* 
+*/
 export interface charData {
   title: string;
   type: string;
@@ -20,35 +36,18 @@ export class DetallesOutService {
 
   constructor(private http: HttpClient) { }
 
-  uri = "http://137.117.78.117:3000";
+  uri = "http://137.117.78.117:3000"; //url principal de la API en Azure (cambiar por la API de la empresa);
   token;
-  response:any[]=[];
-  datos:any[]=[];
+  response:any[]=[]; //respuesta de la API
+  datos:any[]=[]; //datos numericos de la grafica 
   headers = new HttpHeaders({
     'Content-Type': 'application/json',
     'access-token': localStorage.auth_token
   });
-
-  // options:HttpHeader = { headers: this.headers };
-
   
-  private data: charData[] = [{
+  private data: charData[] = [{ //datos de la grafica
     title: 'Bill Cycle Acumlado por dia',
     type: 'ColumnChart',
-    // data: [
-    //   ['Abril 1,2018', 100000, 30000],
-    //   ['Abril 2,2018', 200000, 20000],
-    //   ['Abril 3,2018', 50000, 50000],
-    //   ['Abril 4,2018', 20000, 40000],
-    //   ['Abril 5,2018', 100000, 200000],
-    //   ['Abril 6,2018', 50000, 60000],
-    //   ['Abril 7,2018', 200000, 80000],
-    //   ['Abril 8,2018', 100000, 40000],
-    //   ['Abril 9,2018', 90000, 20000],
-    //   ['Abril 10,2018', 150000, 90000],
-    //   ['Abril 11,2018', 100000, 70000],
-    //   ['Abril 12,2018', 120000, 50000],
-    // ],
     data: this.datos,
     columnNames: ['Fecha', 'Activaciones', 'CambioDN','Otros','Portin'],
     options: {
@@ -61,17 +60,18 @@ export class DetallesOutService {
   }
   ]
 
-  // offset(offset:number){
-
-  //   this.response=this.http.post('/portabilidad_gral', {sysdate:offset});
-
-  // }
+  /**
+   * Función que devuelve datos de la grafica detalles_out
+   * @returns datos de la grafica
+   */
   getData(){
     return this.data;
   }
-
-  getData1(response:any[]) {
-    //this.datos=[[]]; Porque rayos no me deja limpiar el array WTF!
+/**
+   * Función que guarda los datos de la grafica en la variable datos y limpia el formato de las fechas.
+   * @param response - respuesta de la API
+   */
+  cleanData(response:any[]) {
     this.datos.splice(0, this.datos.length);
     console.log(this.response);
     response.forEach(element => {
@@ -80,10 +80,14 @@ export class DetallesOutService {
       this.datos.push([slicedDate,element.ACTIVACIONES,element.CAMBIO_DN,element.OTROS,element.PORTIN]);
     });
     this.datos=this.datos.reverse();
-    console.log(this.datos);
   }
 
-  getPosts(offset:number) {//posible solución , corregir post, hacer trim del response
+  /**
+   * Función que hace la petición a la API para obtener los datos de portabilidad lineal_origen_out
+   * @param offset - cantidad de dias desde de la fecha que selecciono a la actual (debido a que los datos de la bd no son actuales)
+   * @returns la respuesta de la promesa true or false
+   */
+  getPosts(offset:number) {
   
     const promise = new Promise<boolean>((resolve, reject) => {
       this.http
@@ -93,7 +97,7 @@ export class DetallesOutService {
           // Success
           res;
           console.log(res);
-          this.getData1(res);
+          this.cleanData(res);
           
           resolve(true);
           

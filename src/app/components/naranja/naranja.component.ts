@@ -21,7 +21,7 @@ export class NaranjaComponent implements OnInit {
      //await this._cardsService.setCards("out","nextel");
      this.inconsistenciasOut=this._cardsService.getInconsistenciasOut();
      this.inconssistenciasIn=this._cardsService.getInconsistenciasIn();
-     this.cards = this._cardsService.getHomeCard();
+     this.cards = this._cardsService.getCards();
      
     })()
   

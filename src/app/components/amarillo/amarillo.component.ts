@@ -19,7 +19,7 @@ export class AmarilloComponent implements OnInit {
      await this._cardsService.setCards("out","movistar");
      this.inconsistenciasOut=this._cardsService.getInconsistenciasOut();
      this.inconssistenciasIn=this._cardsService.getInconsistenciasIn();
-     this.cards = this._cardsService.getHomeCard();
+     this.cards = this._cardsService.getCards();
      
     })()
   

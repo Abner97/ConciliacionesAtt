@@ -1,7 +1,23 @@
+/**
+* Este modulo se encarga de crear la informacion de la graficas de pastel para informacion general de portabilidad out e in.
+* 
+*Se hace una peteción http tipo GET a la Api para obtener los datos;
+* 
+*
+*
+* @author Ricardo Martinez y Abraham Vega
+* @date 10-06-2020
+*/
+
+
+
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-
+/**
+*Esta interfaz contiene el formato de los datos que se necesitan para generar la google charts
+* 
+*/
 export interface charData {
   title?: string;
   type?: string;
@@ -24,7 +40,7 @@ export class PortabilidadOutInService {
   inconsistenciasIn: number;
   private Grafica: charData; 
   private datos:any[];
-  uri = "http://137.117.78.117:3000";
+  uri = "http://137.117.78.117:3000";//dirección ip de la API
 
   constructor(private http: HttpClient) {
     this.inconsistenciasOut = 0;
@@ -47,7 +63,6 @@ export class PortabilidadOutInService {
   createContent(datos: any[]) {
     console.log(datos.length);
     this.datos.splice(0, this.datos.length);
-    //let graficaOut:charData;
   
     let titulo: string = datos[0].ESCENARIO;
     let colores:string[]=[];
@@ -77,9 +92,6 @@ export class PortabilidadOutInService {
       width: 650,
       height: 500
     }
-
-  //  console.log("GRAAA");
-    console.log(this.Grafica);
   }
 
   getInconsistenciasOut() {
@@ -90,7 +102,7 @@ export class PortabilidadOutInService {
     return this.inconsistenciasIn;
   }
 
-  setGraph(type:string) {//posible solución , corregir post, hacer trim del response
+  setGraph(type:string) {
     
     let request=''; 
     if(type=="out"){
@@ -126,32 +138,10 @@ export class PortabilidadOutInService {
   }
 
   getGraph() {
-  //  console.log("imprimendo graph en return");
-    console.log(this.Grafica);
     return this.Grafica;
   }
 
 }
-
-// title = 'Browser market shares at a specific website, 2014';
-//   type = 'PieChart';
-//   data = [
-
-//      ['IE', 26.8],
-//      ['Chrome', 12.8],
-//      ['Safari', 8.5],
-//      ['Opera', 6.2],
-//      ['Others', 0.7] 
-//   ];
-//   columnNames = ['Browser', 'Percentage'];
-//   options = { 
-//     pieHole: 0.7,
-
-//   };
-//   width = 400;
-//   height = 400;
-
-
 
 
 

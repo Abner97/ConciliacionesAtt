@@ -1,7 +1,22 @@
+/**
+* Este modulo se encarga de crear la informacion de la grafica de portabilidad_general.
+* 
+*Se hace una peteción http tipo GET a la Api para obtener los datos de portabilidad general;
+* 
+*
+*
+* @author Ricardo Martinez y Abraham Vega
+* @date 10-06-2020
+*/
+
+
 import { Injectable} from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-
+/**
+*Esta interfaz contiene el formato de los datos que se necesitan para generar la google charts
+* 
+*/
 export interface charData {
   title: string;
   type: string;
@@ -20,35 +35,18 @@ export class InOutDataService {
 
   constructor(private http: HttpClient) { }
 
-  uri = "http://137.117.78.117:3000";
-  token;
-  response:any[]=[];
-  datos:any[]=[];
-  headers = new HttpHeaders({
+  uri = "http://137.117.78.117:3000"; //dirección ip de la API en Azure
+  response:any[]=[]; //respuesta de la API
+  datos:any[]=[];//datos numericos de la grafica
+  headers = new HttpHeaders({ //headers de la peticion htttp
     'Content-Type': 'application/json',
     'access-token': localStorage.auth_token
   });
 
-  // options:HttpHeader = { headers: this.headers };
-
   
-  private data: charData[] = [{
+  private data: charData[] = [{ //datos de la grafica
     title: 'Bill Cycle Acumlado por dia',
     type: 'Line',
-    // data: [
-    //   ['Abril 1,2018', 100000, 30000],
-    //   ['Abril 2,2018', 200000, 20000],
-    //   ['Abril 3,2018', 50000, 50000],
-    //   ['Abril 4,2018', 20000, 40000],
-    //   ['Abril 5,2018', 100000, 200000],
-    //   ['Abril 6,2018', 50000, 60000],
-    //   ['Abril 7,2018', 200000, 80000],
-    //   ['Abril 8,2018', 100000, 40000],
-    //   ['Abril 9,2018', 90000, 20000],
-    //   ['Abril 10,2018', 150000, 90000],
-    //   ['Abril 11,2018', 100000, 70000],
-    //   ['Abril 12,2018', 120000, 50000],
-    // ],
     data: this.datos,
     columnNames: ['Fecha', 'In', 'Out'],
     options: {
@@ -59,28 +57,32 @@ export class InOutDataService {
   }
   ]
 
-  // offset(offset:number){
-
-  //   this.response=this.http.post('/portabilidad_gral', {sysdate:offset});
-
-  // }
   getData(){
     return this.data;
   }
 
-  getData1(response:any[]) {
-    //this.datos=[[]]; Porque rayos no me deja limpiar el array WTF!
-    this.datos.splice(0, this.datos.length);
+   /**
+  *Esta función se encarga de generar los datos para la grafica de portabilidad general y detalles out
+  *y quitar los caracteres indeseados en las fechas.
+  * @param response - respuesta de la API.
+  */
+  cleanData(response:any[]) {
+    this.datos.splice(0, this.datos.length);//limpieza de datos
+
     response.forEach(element => {
-      console.log(element.FECHA_PROCESO);
       let slicedDate=element.FECHA_PROCESO.slice(0,element.FECHA_PROCESO.search("T"));
       this.datos.push([slicedDate,element.PORT_OUT,element.PORT_IN]);
     });
     this.datos=this.datos.reverse();
-    console.log(this.datos);
   }
 
-  getPosts(offset:number) {//posible solución , corregir post, hacer trim del response
+
+/**
+   * Función que hace la petición a la API para obtener los datos de portabilidad general
+   * @param offset - cantidad de dias desde de la fecha que selecciono a la actual (debido a que los datos de la bd no son actuales)
+   * @returns la respuesta de la promesa true or false
+   */
+  getPosts(offset:number) {
   
     const promise = new Promise<boolean>((resolve, reject) => {
       this.http
@@ -88,9 +90,7 @@ export class InOutDataService {
         .toPromise()
         .then((res: any[]) => {
           // Success
-          res;
-          console.log(res);
-          this.getData1(res);
+          this.cleanData(res);
           
           resolve(true);
           
