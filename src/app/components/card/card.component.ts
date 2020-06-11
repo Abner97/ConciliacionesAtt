@@ -39,7 +39,7 @@ export class CardComponent implements OnInit {
   detalles(route:string){
    
     this.router.navigate([`/${route}`]);
-    console.log(route);
+    
 
   }
 

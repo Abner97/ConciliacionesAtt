@@ -12,11 +12,11 @@ export class PortabilidadOutComponent implements OnInit {
   mostrar:boolean=false;
   constructor(private inOutService:PortabilidadOutInService, private _location: Location) { 
     (async () => {
-      console.log("await");
+      
        await this.inOutService.setGraph('out');
        this.data = this.inOutService.getGraph();
        this.mostrar=true;
-       console.log(this.data.type);
+       
       })()
   }
 
@@ -25,17 +25,17 @@ export class PortabilidadOutComponent implements OnInit {
   handler(evento){
     if(evento.length>0){
       var X=[];
-      console.log(this.data.data[evento[0].row]);
-      console.log(["Operador","Porcetaje"]);
-      console.log(this.data.data[evento[0].row][0]);
+      
+      
+      
       if(this.data.data[evento[0].row][0]=="MOVISTAR (PGS)"){
         X.push(["MOVISTAR",this.data.data[evento[0].row][1]])
       }
       else{
         X.push(this.data.data[evento[0].row]);
       }
-      X.push(["Operador","Porcetaje"]);
-      console.log(X);
+      X.push(["Operador","Porcentaje"]);
+      
       window.location.href='/detalles-general/'+JSON.stringify(X);
     }
   }

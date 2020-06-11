@@ -38,7 +38,6 @@ export class GoogleChartComponent implements OnInit {
   handler(evento){
     if(evento){
       console.log(evento[0].row)
-      //alert('do something');
     }
   }
   

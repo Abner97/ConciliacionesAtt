@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   inconssistenciasIn:number=0;
   constructor(private _cardsService: CardsDataService) {
     (async () => {
-    console.log("await");
+    
      await this._cardsService.setCards("in");
      await this._cardsService.setCards("out");
      this.inconsistenciasOut=this._cardsService.getInconsistenciasOut();

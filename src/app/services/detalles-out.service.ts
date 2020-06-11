@@ -73,9 +73,9 @@ export class DetallesOutService {
    */
   cleanData(response:any[]) {
     this.datos.splice(0, this.datos.length);
-    console.log(this.response);
+    
     response.forEach(element => {
-      console.log(element.FECHA_PROCESO);
+      
       let slicedDate=element.FECHA_PROCESO.slice(0,element.FECHA_PROCESO.search("T"));
       this.datos.push([slicedDate,element.ACTIVACIONES,element.CAMBIO_DN,element.OTROS,element.PORTIN]);
     });
@@ -96,7 +96,7 @@ export class DetallesOutService {
         .then((res: any[]) => {
           // Success
           res;
-          console.log(res);
+          
           this.cleanData(res);
           
           resolve(true);

@@ -12,10 +12,10 @@ export class DetallesGeneralComponent implements OnInit {
   constructor(private actRoute: ActivatedRoute,private _location: Location) { }
 
   ngOnInit(): void {
-    //buscar que la data eviada salga de su respectivo componente con este en formato 
+    //Buscar que la data enviada salga de su respectivo componente con este en formato 
     /*{
-      X.push(this.data[0].data[evento[0].row]); siendo esta la data que desea ver reflejada en la tabla de detalles
-      X.push(this.data[0].columnNames); siendo estos los nombres de los indices de la tabla a mostrar
+      X.push(this.data[0].data[evento[0].row]); siendo esta la data que desea ver reflejada en la tabla de detalles [dato1,dato2,dato3]
+      X.push(this.data[0].columnNames); siendo estos los nombres de los indices de la tabla a mostrar  un array [index1,index2]
       this.datadetalles=JSON.stringify(X);  strigyfiy para pasarlo por el url
       window.location.href='/detalles-general/'+this.datadetalles;
     }*/
@@ -23,21 +23,21 @@ export class DetallesGeneralComponent implements OnInit {
       console.log(params.get('data'));
       if((params.get('data')).toString()== "1"){
         console.log()
-        this.data={0:["Telcel",localStorage.getItem("TelcelIn"),localStorage.getItem("TelcelOut")],1:["Provedor","In","Out"]}
-        console.log(this.data);
+        this.data={0:["Telcel",localStorage.getItem("TelcelIn"),localStorage.getItem("TelcelOut")],1:["Operador","In","Out"]}
+        
       }else if((params.get('data')).toString()== "2"){
         console.log()
-        this.data={0:["Movistar",localStorage.getItem("MovistarIn"),localStorage.getItem("MovistarOut")],1:["Provedor","In","Out"]}
-        console.log(this.data);
+        this.data={0:["Movistar",localStorage.getItem("MovistarIn"),localStorage.getItem("MovistarOut")],1:["Operador","In","Out"]}
+        
       }else if((params.get('data')).toString()== "3"){
         console.log()
-        this.data={0:["Nextel",localStorage.getItem("NextelIn")],1:["Provedor","In"]}
-        console.log(this.data);
+        this.data={0:["Nextel",localStorage.getItem("NextelIn")],1:["Operador","In"]}
+        
       }   
       else{
         console.log(JSON.parse(params.get('data')));
         this.data = JSON.parse(params.get('data'));
-        console.log(this.data);
+        
         
       }
     });

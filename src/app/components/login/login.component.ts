@@ -17,7 +17,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
   onSubmit() {
-      //console.log(this.profileForm.value);
       this._auth.login(this.profileForm.value.user,this.profileForm.value.password);
   }
 }

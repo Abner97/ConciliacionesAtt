@@ -14,7 +14,7 @@ export class HistogramaDetalleComponent implements OnInit {
   constructor(private _histData: HistDataService, private actRoute: ActivatedRoute) { }
   ngOnInit(): void {
     this.data = this._histData.getData();
-    console.log(this.row);
+    
     this.actRoute.paramMap.subscribe(params => {
       this.row = params.get('row');
     });

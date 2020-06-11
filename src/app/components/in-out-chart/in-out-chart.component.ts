@@ -25,9 +25,9 @@ export class InOutChartComponent implements OnInit {
     
     if(evento.length>0){
       var X=[];
-      console.log(evento[0].row);
-      console.log(this.data[0].data[evento[0].row]);
-      console.log(this.data[0].columnNames);
+      
+      
+      
       X.push(this.data[0].data[evento[0].row]);
       X.push(this.data[0].columnNames);
       window.location.href='/detalles-general/'+JSON.stringify(X);

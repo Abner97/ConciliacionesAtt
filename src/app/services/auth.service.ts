@@ -53,7 +53,7 @@ export class AuthService {
   constructor(private http: HttpClient,private router: Router) { 
 
   }
-  //Logine
+  //Login
 
   /**
    * Función que valida usuario y contraseña

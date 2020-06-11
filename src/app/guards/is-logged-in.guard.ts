@@ -14,12 +14,10 @@ export class IsLoggedInGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if(this.authService.logIn()){
-      //window.alert("Usted ya esta loggeado, para realizar un cambio de de cuenta, Cierre sesión en el apartado superior de la pantalla");
       this.router.navigate(['home']);
       return false;
 
     }else{
-      //this.router.navigate(['login']);
       return true;
     }
 

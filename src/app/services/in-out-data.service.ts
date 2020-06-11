@@ -53,7 +53,7 @@ export class InOutDataService {
       colors: ['green', 'red', 'blue'],
     },
     width: 1100,
-    height: 450
+    height: 500
   }
   ]
 

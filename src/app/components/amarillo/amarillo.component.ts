@@ -14,7 +14,7 @@ export class AmarilloComponent implements OnInit {
   constructor(private _cardsService: CardsDataService) {
     this._cardsService.cleanArray();
     (async () => {
-    console.log("await");
+    
      await this._cardsService.setCards("in","movistar");
      await this._cardsService.setCards("out","movistar");
      this.inconsistenciasOut=this._cardsService.getInconsistenciasOut();

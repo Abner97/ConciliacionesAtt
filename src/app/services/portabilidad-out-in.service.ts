@@ -61,7 +61,7 @@ export class PortabilidadOutInService {
 
 
   createContent(datos: any[]) {
-    console.log(datos.length);
+    
     this.datos.splice(0, this.datos.length);
   
     let titulo: string = datos[0].ESCENARIO;
@@ -113,12 +113,11 @@ export class PortabilidadOutInService {
 
     const promise = new Promise<boolean>((resolve, reject) => {
       this.http
-        //.get(`/portabilidad_gral/${offset}`,{headers:this.headers})
         .get(this.uri+request, { headers: this.headers })
         .toPromise()
         .then((res: any[]) => {
           // Success
-          console.log(res);
+          
           this.createContent(res);
 
           resolve(true);
@@ -127,7 +126,6 @@ export class PortabilidadOutInService {
           err => {
             // Error
             reject(false);
-
           }
         );
     });

@@ -16,7 +16,7 @@ export class RojoComponent implements OnInit {
   constructor(private _cardsService: CardsDataService) {
     this._cardsService.cleanArray();
     (async () => {
-    console.log("await");
+    
      await this._cardsService.setCards("in","telcel");
      await this._cardsService.setCards("out","telcel");
      this.inconsistenciasOut=this._cardsService.getInconsistenciasOut();

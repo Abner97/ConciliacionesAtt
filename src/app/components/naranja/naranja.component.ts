@@ -14,7 +14,7 @@ export class NaranjaComponent implements OnInit {
   constructor(private _cardsService: CardsDataService) {
     this._cardsService.cleanArray();
     (async () => {
-    console.log("await");
+    
      await this._cardsService.cleanArray();
      await this._cardsService.setCards("in","nextel");
     

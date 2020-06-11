@@ -91,7 +91,6 @@ export class CardsDataService {
 
 
       tempArray.push(element.INCONSISTENCIAS);
-      //console.log(element);
       
       if (titulo == "PORTABILIDAD SALIENTE") {
         this.inconsistenciasOut = this.inconsistenciasOut + element.INCONSISTENCIAS;
@@ -118,8 +117,8 @@ export class CardsDataService {
             porcentaje: element.PORCENTAJE,
             fechaProceso: element.FECHA_PROCESO
           }
-          console.log("Nombre");
-          console.log(telcel.nombre);
+          
+          
           break;
 
         case "NEXTEL":
@@ -231,8 +230,6 @@ export class CardsDataService {
         .toPromise()
         .then((res: any[]) => {
           // Success
-          console.log(res);
-
           this.createContent(res,telefonica)
           resolve(true);
 
@@ -240,14 +237,10 @@ export class CardsDataService {
           err => {
             // Error
             reject(false);
-
           }
         );
     });
-
     return promise;
-
-
   }
 
 
