@@ -8,7 +8,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./detalles-general.component.css']
 })
 export class DetallesGeneralComponent implements OnInit {
-  data: string;
+  data: any;
   constructor(private actRoute: ActivatedRoute,private _location: Location) { }
 
   ngOnInit(): void {
@@ -20,7 +20,26 @@ export class DetallesGeneralComponent implements OnInit {
       window.location.href='/detalles-general/'+this.datadetalles;
     }*/
     this.actRoute.paramMap.subscribe(params => {
-      this.data = JSON.parse(params.get('data'));
+      console.log(params.get('data'));
+      if((params.get('data')).toString()== "1"){
+        console.log()
+        this.data={0:["Telcel",localStorage.getItem("TelcelIn"),localStorage.getItem("TelcelOut")],1:["Provedor","In","Out"]}
+        console.log(this.data);
+      }else if((params.get('data')).toString()== "2"){
+        console.log()
+        this.data={0:["Movistar",localStorage.getItem("MovistarIn"),localStorage.getItem("MovistarOut")],1:["Provedor","In","Out"]}
+        console.log(this.data);
+      }else if((params.get('data')).toString()== "3"){
+        console.log()
+        this.data={0:["Nextel",localStorage.getItem("NextelIn")],1:["Provedor","In"]}
+        console.log(this.data);
+      }   
+      else{
+        console.log(JSON.parse(params.get('data')));
+        this.data = JSON.parse(params.get('data'));
+        console.log(this.data);
+        
+      }
     });
   }
   volver() {

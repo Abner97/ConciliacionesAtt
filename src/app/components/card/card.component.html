@@ -1,6 +1,7 @@
-<div *ngIf="data; else elseBlock" class=" column card animated fadeIn fast m-2">
-    <div class="card-header">
+<div *ngIf="data; else elseBlock" class=" column card animated fadeIn fast m-3">
+    <div class="card-header text-center font-weight-normal text-wrap" >
         {{title}}
+        <!-- <h1 class="small"></h1> -->
     </div>
     <app-google-chart [title]="title" [type]="type" [data]="data" [columnNames]="columnNames" [options]="options"
         [width]="width" [height]="height" class="d-flex flex-column"></app-google-chart>
@@ -8,7 +9,7 @@
     <!--
         <p>{{type}}</p>
     -->
-    <div class="card-block">
+    <div class="card-block d-flex justify-content-center">
         <!--
         <h5 class="card-title p">Conci</h5>
         <p class="card-text p">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem fuga totam quis soluta iusto consequuntur praesentium ad doloremque debitis. Voluptates ratione distinctio doloremque repellendus id similique repudiandae vel harum fugit!</p>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DetallesOutService , charData} from '../../services/detalles-out.service';
 import {  FormGroup, FormControl } from '@angular/forms';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-detalles-out',
@@ -11,20 +12,24 @@ export class DetallesOutComponent implements OnInit {
 
   data: charData[] = [];
   update:boolean=false;
-  constructor(private _inOutData: DetallesOutService) { }
+  constructor(private _inOutData: DetallesOutService, private _location: Location) { }
   profileForm = new FormGroup({
-    date :new FormControl(''),
+    date :new FormControl('2020-02-01'),//cambiar para seleccionar fecha default, se podria cambiar al dia actual con la funcion Date de JS
     
   });
   ngOnInit(): void {
     this.data = this._inOutData.getData();
-    //this.profileForm.setValue(new Date('2020-02-01'));
   }
   handler(evento){
     
     if(evento.length>0){
-      console.log(evento[0].row)
-      window.location.href='/histograma-detallesp/'+evento[0].row;
+      var X=[];
+      console.log(evento[0].row);
+      console.log(this.data[0].data[evento[0].row]);
+      console.log(this.data[0].columnNames);
+      X.push(this.data[0].data[evento[0].row]);
+      X.push(this.data[0].columnNames);
+      window.location.href='/detalles-general/'+JSON.stringify(X);
     }
   }
 
@@ -42,5 +47,9 @@ export class DetallesOutComponent implements OnInit {
    
     })()
     
+  }
+  volver() {
+    console.log(this.data[0])
+    this._location.back();
   }
 }

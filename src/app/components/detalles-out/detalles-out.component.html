@@ -3,11 +3,12 @@
         <form class="m-5"(ngSubmit)="onSubmit()" [formGroup]="profileForm">
             <div class=" row form-group">
                  <label for="exampleInputEmail1">Fecha de Consulta:
-                    <input type="date" class="form-control" aria-describedby="emailHelp" formControlName="date">
+                    <input type="date" class="form-control" aria-describedby="emailHelp" formControlName="date" value="02-01-2020">
                  </label>
              </div>
-             <div class="row">
-                 <button type="submit" class="btn btn-primary">Consultar</button>
+             <div class="d-flex justify-content-center">
+                 <button type="submit" class="m-1 btn btn-primary">Consultar</button>
+                 <button class="m-1 btn btn-primary" (click)="volver()">Volver</button>
              </div> 
          </form>
     </div>
